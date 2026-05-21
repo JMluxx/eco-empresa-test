@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Economía de la Empresa — Examen Tipo Test v2</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root, [data-theme="light"] {
+    --color-bg: #f7f6f2; --color-surface: #f9f8f5; --color-surface-2: #fbfbf9;
+    --color-surface-offset: #f0ede8; --color-divider: #dcd9d5; --color-border: #d4d1ca;
+    --color-text: #28251d; --color-text-muted: #7a7974; --color-text-faint: #bab9b4;
+    --color-primary: #01696f; --color-primary-hover: #0c4e54; --color-primary-active: #0f3638;
+    --color-primary-highlight: #cedcd8;
+    --color-success: #437a22; --color-success-hover: #2e5c10;
+    --color-success-highlight: #d4dfcc;
+    --color-error: #a12c7b; --color-error-hover: #7d1e5e;
+    --color-error-highlight: #e0ced7;
+    --color-warning: #964219; --color-warning-highlight: #ddcfc6;
+    --color-gold: #d19900; --color-gold-highlight: #e9e0c6;
+    --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+    --radius-xl: 1rem; --radius-2xl: 1.5rem; --radius-full: 9999px;
+    --shadow-sm: 0 1px 3px oklch(0.2 0.01 80 / 0.07);
+    --shadow-md: 0 4px 16px oklch(0.2 0.01 80 / 0.09);
+    --shadow-lg: 0 12px 40px oklch(0.2 0.01 80 / 0.13);
+    --font-display: 'Cabinet Grotesk', sans-serif;
+    --font-body: 'Satoshi', sans-serif;
+    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+    --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+    --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+    --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+    --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-theme="dark"] {
+    --color-bg: #131211; --color-surface: #1a1917; --color-surface-2: #201f1d;
+    --color-surface-offset: #252320; --color-divider: #2a2927; --color-border: #353330;
+    --color-text: #d4d2ce; --color-text-muted: #7c7b78; --color-text-faint: #4e4d4b;
+    --color-primary: #4f98a3; --color-primary-hover: #227f8b; --color-primary-active: #1a626b;
+    --color-primary-highlight: #1e3234;
+    --color-success: #6daa45; --color-success-hover: #4d8f25;
+    --color-success-highlight: #1d2e18;
+    --color-error: #d163a7; --color-error-hover: #b9478f;
+    --color-error-highlight: #2e1827;
+    --color-warning: #bb653b; --color-warning-highlight: #2e1e14;
+    --color-gold: #e8af34; --color-gold-highlight: #2c2210;
+    --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.25);
+    --shadow-md: 0 4px 16px oklch(0 0 0 / 0.35);
+    --shadow-lg: 0 12px 40px oklch(0 0 0 / 0.5);
+  }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body { min-height: 100dvh; font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text); background: var(--color-bg); line-height: 1.6; }
+
+  /* LAYOUT */
+  .app { max-width: 860px; margin: 0 auto; padding: 0 1.25rem 4rem; }
+
+  /* HEADER */
+  header { position: sticky; top: 0; z-index: 100; background: var(--color-bg); border-bottom: 1px solid var(--color-divider); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .header-inner { max-width: 860px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .logo-icon { width: 32px; height: 32px; flex-shrink: 0; }
+  .logo-text { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--color-text); letter-spacing: -0.02em; }
+  .logo-text span { color: var(--color-primary); }
+  .header-controls { display: flex; align-items: center; gap: 0.5rem; }
+  .btn-icon { background: none; border: 1px solid var(--color-border); border-radius: var(--radius-md); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); cursor: pointer; transition: all var(--transition); }
+  .btn-icon:hover { background: var(--color-surface-offset); color: var(--color-text); border-color: var(--color-primary); }
+
+  /* HERO */
+  .hero { padding: 2.5rem 0 1.5rem; text-align: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--color-primary-highlight); color: var(--color-primary); font-size: var(--text-xs); font-weight: 600; padding: 0.3rem 0.75rem; border-radius: var(--radius-full); margin-bottom: 1rem; letter-spacing: 0.04em; text-transform: uppercase; }
+  .hero h1 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; color: var(--color-text); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem; }
+  .hero p { color: var(--color-text-muted); font-size: var(--text-base); max-width: 52ch; margin: 0 auto 1.5rem; }
+  .exam-info { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 2rem; }
+  .info-chip { display: flex; align-items: center; gap: 0.35rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-full); padding: 0.3rem 0.8rem; font-size: var(--text-xs); color: var(--color-text-muted); }
+  .info-chip svg { color: var(--color-primary); }
+
+  /* PROGRESS */
+  .progress-bar-wrap { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+  .progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+  .progress-label { font-size: var(--text-xs); color: var(--color-text-muted); font-weight: 500; }
+  .progress-count { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--color-primary); }
+  .progress-track { height: 6px; background: var(--color-divider); border-radius: var(--radius-full); overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--color-primary); border-radius: var(--radius-full); transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .progress-topics { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+  .topic-dot { font-size: var(--text-xs); padding: 0.15rem 0.55rem; border-radius: var(--radius-full); background: var(--color-surface-offset); color: var(--color-text-muted); border: 1px solid transparent; transition: all var(--transition); }
+  .topic-dot.active { background: var(--color-primary-highlight); color: var(--color-primary); border-color: var(--color-primary); }
+  .topic-dot.done { background: var(--color-success-highlight); color: var(--color-success); }
+
+  /* SCORE COUNTER (live) */
+  .score-live { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 1.5rem; }
+  .score-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 0.6rem 0.75rem; text-align: center; }
+  .score-card .val { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; line-height: 1; }
+  .score-card .lbl { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 0.25rem; }
+  .score-card.correct .val { color: var(--color-success); }
+  .score-card.wrong .val { color: var(--color-error); }
+  .score-card.blank .val { color: var(--color-text-muted); }
+  .score-card.total .val { color: var(--color-primary); }
+
+  /* FILTER TABS */
+  .filter-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .filter-btn { background: none; border: 1px solid var(--color-border); border-radius: var(--radius-full); padding: 0.35rem 0.9rem; font-size: var(--text-xs); font-family: var(--font-body); color: var(--color-text-muted); cursor: pointer; transition: all var(--transition); white-space: nowrap; }
+  .filter-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .filter-btn.active { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+
+  /* QUESTION CARD */
+  .questions-list { display: flex; flex-direction: column; gap: 1.25rem; }
+  .q-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 1.5rem; transition: box-shadow var(--transition), border-color var(--transition); }
+  .q-card:hover { box-shadow: var(--shadow-sm); }
+  .q-card.answered-correct { border-color: var(--color-success); background: color-mix(in oklch, var(--color-success-highlight) 60%, var(--color-surface)); }
+  .q-card.answered-wrong { border-color: var(--color-error); background: color-mix(in oklch, var(--color-error-highlight) 60%, var(--color-surface)); }
+  .q-card.answered-blank { border-color: var(--color-border); opacity: 0.7; }
+
+  .q-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.85rem; flex-wrap: wrap; }
+  .q-num { font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; color: var(--color-primary); background: var(--color-primary-highlight); padding: 0.2rem 0.55rem; border-radius: var(--radius-full); }
+  .q-topic { font-size: var(--text-xs); color: var(--color-text-muted); background: var(--color-surface-offset); padding: 0.2rem 0.55rem; border-radius: var(--radius-full); }
+  .q-difficulty { font-size: var(--text-xs); padding: 0.2rem 0.55rem; border-radius: var(--radius-full); }
+  .diff-easy { background: var(--color-success-highlight); color: var(--color-success); }
+  .diff-medium { background: var(--color-gold-highlight); color: var(--color-gold); }
+  .diff-hard { background: var(--color-error-highlight); color: var(--color-error); }
+
+  .q-text { font-size: var(--text-base); font-weight: 500; color: var(--color-text); margin-bottom: 1.1rem; line-height: 1.5; }
+  .q-formula { background: var(--color-surface-offset); border-left: 3px solid var(--color-primary); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 0.6rem 0.9rem; font-size: var(--text-sm); font-family: monospace; color: var(--color-text-muted); margin-bottom: 1rem; }
+
+  .options { display: flex; flex-direction: column; gap: 0.5rem; }
+  .option { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.7rem 0.9rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-lg); cursor: pointer; transition: all var(--transition); background: var(--color-bg); }
+  .option:hover { border-color: var(--color-primary); background: var(--color-primary-highlight); }
+  .option.selected { border-color: var(--color-primary); background: var(--color-primary-highlight); }
+  .option.correct { border-color: var(--color-success) !important; background: var(--color-success-highlight) !important; }
+  .option.wrong { border-color: var(--color-error) !important; background: var(--color-error-highlight) !important; }
+  .option.disabled { cursor: default; pointer-events: none; }
+  .option.show-correct { border-color: var(--color-success) !important; background: var(--color-success-highlight) !important; }
+
+  .opt-letter { flex-shrink: 0; width: 26px; height: 26px; border-radius: var(--radius-full); border: 1.5px solid var(--color-border); display: flex; align-items: center; justify-content: center; font-size: var(--text-xs); font-weight: 700; font-family: var(--font-display); color: var(--color-text-muted); transition: all var(--transition); }
+  .option.selected .opt-letter { border-color: var(--color-primary); color: var(--color-primary); background: var(--color-primary-highlight); }
+  .option.correct .opt-letter { border-color: var(--color-success); color: var(--color-success); background: var(--color-success-highlight); }
+  .option.wrong .opt-letter { border-color: var(--color-error); color: var(--color-error); background: var(--color-error-highlight); }
+  .option.show-correct .opt-letter { border-color: var(--color-success); color: var(--color-success); }
+
+  .opt-text { font-size: var(--text-sm); color: var(--color-text); line-height: 1.45; }
+
+  /* FEEDBACK */
+  .q-feedback { display: none; margin-top: 1rem; padding: 0.8rem 1rem; border-radius: var(--radius-lg); font-size: var(--text-sm); line-height: 1.5; border-left: 3px solid; }
+  .q-feedback.correct { background: var(--color-success-highlight); border-color: var(--color-success); color: var(--color-text); display: block; }
+  .q-feedback.wrong { background: var(--color-error-highlight); border-color: var(--color-error); color: var(--color-text); display: block; }
+  .q-feedback .fb-label { font-weight: 700; display: block; margin-bottom: 0.25rem; }
+  .q-feedback.correct .fb-label { color: var(--color-success); }
+  .q-feedback.wrong .fb-label { color: var(--color-error); }
+
+  /* BUTTONS */
+  .btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.25rem; border-radius: var(--radius-md); font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; cursor: pointer; transition: all var(--transition); border: none; }
+  .btn-primary { background: var(--color-primary); color: #fff; }
+  .btn-primary:hover { background: var(--color-primary-hover); }
+  .btn-outline { background: none; border: 1.5px solid var(--color-border); color: var(--color-text); }
+  .btn-outline:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+  /* ACTION BAR */
+  .action-bar { position: sticky; bottom: 1.5rem; display: flex; justify-content: center; gap: 0.75rem; z-index: 50; pointer-events: none; }
+  .action-bar .btn { pointer-events: all; box-shadow: var(--shadow-md); }
+
+  /* RESULTS PANEL */
+  #results-panel { display: none; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-2xl); padding: 2rem; margin-bottom: 2rem; text-align: center; }
+  #results-panel h2 { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .result-grade { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem); font-weight: 800; letter-spacing: -0.04em; }
+  .result-grade.pass { color: var(--color-success); }
+  .result-grade.fail { color: var(--color-error); }
+  .result-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0; }
+  .rstat { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 0.9rem; }
+  .rstat .rv { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; }
+  .rstat .rl { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 0.2rem; }
+  .rstat.rc .rv { color: var(--color-success); }
+  .rstat.rw .rv { color: var(--color-error); }
+  .rstat.rb .rv { color: var(--color-text-muted); }
+
+  .penalty-note { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 0.5rem; }
+
+  /* SECTION DIVIDER */
+  .section-divider { display: flex; align-items: center; gap: 0.75rem; margin: 2rem 0 1rem; }
+  .section-divider-line { flex: 1; height: 1px; background: var(--color-divider); }
+  .section-divider-label { font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; color: var(--color-text-faint); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .score-live { grid-template-columns: repeat(2, 1fr); }
+    .result-stats { grid-template-columns: repeat(3, 1fr); }
+    .hero h1 { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+  }
+
+  /* ANIMATIONS */
+  @keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .q-card { animation: slideIn 0.3s ease forwards; }
+  @keyframes pop { 0%{transform:scale(1)} 50%{transform:scale(1.06)} 100%{transform:scale(1)} }
+  .option.correct { animation: pop 0.35s ease; }
+
+  /* BLANK BUTTON */
+  .blank-btn { background: none; border: 1.5px dashed var(--color-border); border-radius: var(--radius-lg); padding: 0.55rem 1rem; font-size: var(--text-xs); font-family: var(--font-body); color: var(--color-text-muted); cursor: pointer; transition: all var(--transition); margin-top: 0.5rem; display: inline-flex; align-items: center; gap: 0.35rem; }
+  .blank-btn:hover { border-color: var(--color-text-muted); color: var(--color-text); }
+
+  /* TOOLTIP */
+  abbr[title] { text-decoration: underline dotted var(--color-primary); cursor: help; }
+
+  /* SCROLL TO TOP */
+  #scroll-top { position: fixed; bottom: 5rem; right: 1.5rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-full); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-sm); opacity: 0; pointer-events: none; transition: all var(--transition); z-index: 200; color: var(--color-text-muted); }
+  #scroll-top.visible { opacity: 1; pointer-events: all; }
+  #scroll-top:hover { color: var(--color-primary); border-color: var(--color-primary); }
+
+  /* ===== MEJORAS NUEVAS ===== */
+
+  /* MODE SELECTOR */
+  .mode-selector { display: flex; gap: 0.5rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 0.75rem 1.25rem; margin-bottom: 1.5rem; align-items: center; flex-wrap: wrap; }
+  .mode-label { font-size: var(--text-xs); font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-right: 0.5rem; }
+  .mode-btn { background: none; border: 1.5px solid var(--color-border); border-radius: var(--radius-full); padding: 0.35rem 1rem; font-size: var(--text-xs); font-family: var(--font-body); font-weight: 600; color: var(--color-text-muted); cursor: pointer; transition: all var(--transition); }
+  .mode-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .mode-btn.active { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+  .mode-btn.active-study { background: var(--color-success); border-color: var(--color-success); color: #fff; }
+  .mode-btn.active-flash { background: var(--color-gold); border-color: var(--color-gold); color: #fff; }
+  .mode-separator { width: 1px; height: 20px; background: var(--color-divider); margin: 0 0.25rem; }
+  .shuffle-btn { margin-left: auto; background: none; border: 1.5px dashed var(--color-border); border-radius: var(--radius-full); padding: 0.35rem 1rem; font-size: var(--text-xs); font-family: var(--font-body); font-weight: 600; color: var(--color-text-muted); cursor: pointer; transition: all var(--transition); display: flex; align-items: center; gap: 0.35rem; }
+  .shuffle-btn:hover { border-color: var(--color-primary); color: var(--color-primary); border-style: solid; }
+  .shuffle-btn.active { background: var(--color-primary-highlight); border-color: var(--color-primary); color: var(--color-primary); border-style: solid; }
+
+  /* TIMER */
+  .timer-bar { display: flex; align-items: center; gap: 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 0.75rem 1.25rem; margin-bottom: 1.5rem; }
+  .timer-display { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-primary); min-width: 80px; letter-spacing: 0.05em; transition: color var(--transition); }
+  .timer-display.warning { color: var(--color-warning); }
+  .timer-display.danger { color: var(--color-error); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+  .timer-track { flex: 1; height: 6px; background: var(--color-divider); border-radius: var(--radius-full); overflow: hidden; }
+  .timer-fill { height: 100%; background: var(--color-primary); border-radius: var(--radius-full); transition: width 1s linear, background 1s; }
+  .timer-fill.warning { background: var(--color-warning); }
+  .timer-fill.danger { background: var(--color-error); }
+  .timer-controls { display: flex; gap: 0.4rem; }
+  .timer-btn { background: none; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 0.3rem 0.7rem; font-size: var(--text-xs); font-family: var(--font-body); font-weight: 600; cursor: pointer; color: var(--color-text-muted); transition: all var(--transition); }
+  .timer-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+  /* FLASHCARD MODE */
+  .flashcard-wrapper { perspective: 1000px; }
+  .fc-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-2xl); padding: 2.5rem; text-align: center; cursor: pointer; transition: box-shadow var(--transition); position: relative; min-height: 280px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; }
+  .fc-card:hover { box-shadow: var(--shadow-md); }
+  .fc-hint { font-size: var(--text-xs); color: var(--color-text-faint); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .fc-topic { font-size: var(--text-xs); color: var(--color-primary); background: var(--color-primary-highlight); padding: 0.2rem 0.7rem; border-radius: var(--radius-full); font-weight: 700; }
+  .fc-question { font-size: var(--text-lg); font-weight: 600; color: var(--color-text); line-height: 1.4; max-width: 60ch; }
+  .fc-answer { display: none; background: var(--color-success-highlight); border: 1px solid var(--color-success); border-radius: var(--radius-lg); padding: 1rem 1.5rem; font-size: var(--text-sm); color: var(--color-text); line-height: 1.5; max-width: 60ch; }
+  .fc-answer.visible { display: block; animation: slideIn 0.25s ease; }
+  .fc-correct-label { font-weight: 700; color: var(--color-success); margin-bottom: 0.35rem; font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.06em; }
+  .fc-nav { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.5rem; }
+  .fc-counter { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); }
+  .fc-progress-bar { height: 3px; background: var(--color-divider); border-radius: var(--radius-full); margin-bottom: 1.5rem; overflow: hidden; }
+  .fc-progress-fill { height: 100%; background: var(--color-gold); border-radius: var(--radius-full); transition: width 0.4s ease; }
+  .fc-actions { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
+  .fc-knew { background: var(--color-success-highlight); border: 1.5px solid var(--color-success); color: var(--color-success); border-radius: var(--radius-full); padding: 0.4rem 1.1rem; font-size: var(--text-xs); font-weight: 700; cursor: pointer; font-family: var(--font-body); transition: all var(--transition); }
+  .fc-knew:hover { background: var(--color-success); color: #fff; }
+  .fc-didnt { background: var(--color-error-highlight); border: 1.5px solid var(--color-error); color: var(--color-error); border-radius: var(--radius-full); padding: 0.4rem 1.1rem; font-size: var(--text-xs); font-weight: 700; cursor: pointer; font-family: var(--font-body); transition: all var(--transition); }
+  .fc-didnt:hover { background: var(--color-error); color: #fff; }
+  .fc-formula { background: var(--color-surface-offset); border-left: 3px solid var(--color-primary); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 0.5rem 0.9rem; font-family: monospace; font-size: var(--text-xs); color: var(--color-text-muted); margin: 0.5rem 0; width: 100%; text-align: left; max-width: 60ch; }
+
+  /* STUDY MODE indicator on card */
+  .q-card.study-mode-card .q-study-hint { display: flex; }
+  .q-study-hint { display: none; align-items: center; gap: 0.4rem; font-size: var(--text-xs); color: var(--color-success); background: var(--color-success-highlight); border-radius: var(--radius-full); padding: 0.2rem 0.7rem; margin-bottom: 0.75rem; font-weight: 600; }
+
+  /* RESULTS BY TOPIC */
+  .topic-breakdown { margin-top: 1.5rem; text-align: left; }
+  .topic-breakdown h3 { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--color-text); margin-bottom: 0.75rem; text-align: center; }
+  .tb-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid var(--color-divider); }
+  .tb-label { font-size: var(--text-xs); color: var(--color-text-muted); width: 140px; flex-shrink: 0; }
+  .tb-track { flex: 1; height: 8px; background: var(--color-divider); border-radius: var(--radius-full); overflow: hidden; }
+  .tb-fill { height: 100%; border-radius: var(--radius-full); transition: width 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .tb-fill.good { background: var(--color-success); }
+  .tb-fill.mid { background: var(--color-gold); }
+  .tb-fill.bad { background: var(--color-error); }
+  .tb-score { font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; min-width: 50px; text-align: right; }
+  .tb-score.good { color: var(--color-success); }
+  .tb-score.mid { color: var(--color-gold); }
+  .tb-score.bad { color: var(--color-error); }
+  .tb-alert { font-size: var(--text-xs); }
+
+  /* SESSION HISTORY */
+  .session-history { margin-top: 1.5rem; border-top: 1px solid var(--color-divider); padding-top: 1.25rem; }
+  .session-history h3 { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--color-text); margin-bottom: 0.75rem; text-align: center; }
+  .history-empty { font-size: var(--text-xs); color: var(--color-text-faint); text-align: center; padding: 0.5rem; }
+  .history-list { display: flex; flex-direction: column; gap: 0.4rem; }
+  .history-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-xs); }
+  .history-num { font-family: var(--font-display); font-weight: 700; color: var(--color-text-faint); width: 24px; }
+  .history-date { color: var(--color-text-muted); flex: 1; }
+  .history-grade { font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm); }
+  .history-grade.pass { color: var(--color-success); }
+  .history-grade.fail { color: var(--color-error); }
+  .history-detail { color: var(--color-text-faint); }
+  .history-clear { background: none; border: none; font-size: var(--text-xs); color: var(--color-text-faint); cursor: pointer; font-family: var(--font-body); text-decoration: underline; margin-top: 0.5rem; display: block; margin-left: auto; }
+  .history-clear:hover { color: var(--color-error); }
+
+  /* STUDY MODE — allow revisit */
+  .option.study-unlocked { cursor: pointer; pointer-events: all; }
+
+  /* TOAST notification */
+  #toast { position: fixed; bottom: 6rem; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--color-text); color: var(--color-bg); padding: 0.6rem 1.25rem; border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 600; opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 500; white-space: nowrap; }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="EcoEmpresa Logo">
+        <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
+        <path d="M8 10 L16 6 L24 10 L24 20 L16 24 L8 20 Z" stroke="white" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+        <path d="M16 6 L16 24 M8 10 L24 10 M8 20 L24 20" stroke="white" stroke-width="1" opacity="0.5"/>
+        <circle cx="16" cy="15" r="2.5" fill="white" opacity="0.9"/>
+      </svg>
+      <span class="logo-text">Eco<span>Empresa</span></span>
+    </a>
+    <div class="header-controls">
+      <button class="btn-icon" data-theme-toggle aria-label="Cambiar modo claro/oscuro">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="app">
+
+
+  <!-- TOAST -->
+  <div id="toast"></div>
+
+  <!-- MODE SELECTOR + SHUFFLE -->
+  <div class="mode-selector">
+    <span class="mode-label">Modo:</span>
+    <button class="mode-btn active" id="mode-exam" onclick="setMode('exam')">🎯 Examen</button>
+    <button class="mode-btn" id="mode-study" onclick="setMode('study')">📖 Estudio</button>
+    <button class="mode-btn" id="mode-flash" onclick="setMode('flash')">⚡ Flashcards</button>
+    <div class="mode-separator"></div>
+    <button class="shuffle-btn" id="shuffle-btn" onclick="toggleShuffle()">🔀 Aleatorizar</button>
+  </div>
+
+  <!-- TIMER -->
+  <div class="timer-bar" id="timer-bar">
+    <span style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">⏱ Tiempo</span>
+    <span class="timer-display" id="timer-display">60:00</span>
+    <div class="timer-track"><div class="timer-fill" id="timer-fill" style="width:100%"></div></div>
+    <div class="timer-controls">
+      <button class="timer-btn" id="timer-start-btn" onclick="timerToggle()">▶ Iniciar</button>
+      <button class="timer-btn" onclick="timerReset()">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- FLASHCARD VIEW (hidden by default) -->
+  <div id="flashcard-view" style="display:none;">
+    <div class="fc-progress-bar"><div class="fc-progress-fill" id="fc-progress-fill" style="width:0%"></div></div>
+    <div class="flashcard-wrapper">
+      <div class="fc-card" id="fc-card" onclick="fcReveal()">
+        <span class="fc-hint" id="fc-hint">Toca para ver la respuesta</span>
+        <span class="fc-topic" id="fc-topic-label">—</span>
+        <div class="fc-question" id="fc-question">—</div>
+        <div class="fc-formula" id="fc-formula" style="display:none;"></div>
+        <div class="fc-answer" id="fc-answer">
+          <div class="fc-correct-label">✅ Respuesta correcta</div>
+          <div id="fc-answer-text">—</div>
+          <div id="fc-explanation" style="margin-top:0.5rem;font-size:var(--text-xs);color:var(--color-text-muted);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="fc-actions" id="fc-actions" style="display:none;">
+      <button class="fc-knew" onclick="fcNext(true)">✅ Lo sabía</button>
+      <button class="fc-didnt" onclick="fcNext(false)">❌ No lo sabía</button>
+    </div>
+    <div class="fc-nav">
+      <button class="btn btn-outline" onclick="fcPrev()">← Anterior</button>
+      <span class="fc-counter" id="fc-counter">1 / 40</span>
+      <button class="btn btn-outline" onclick="fcNext(null)">Siguiente →</button>
+    </div>
+    <div style="text-align:center;margin-top:1rem;">
+      <span id="fc-stats" style="font-size:var(--text-xs);color:var(--color-text-muted);"></span>
+    </div>
+  </div>
+
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      Examen oficial · 26 de mayo · Aula P-112
+    </div>
+    <h1>Economía de la Empresa</h1>
+    <p>Examen tipo test completo — 40 preguntas de todos los temas. Simula las condiciones del examen real con penalización.</p>
+    <div class="exam-info">
+      <span class="info-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>60 min máximo</span>
+      <span class="info-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>✅ +1 bien · ❌ −0.25 mal · ⬜ 0 blanco</span>
+      <span class="info-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>12 temas</span>
+      <span class="info-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>40 preguntas</span>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar-wrap">
+    <div class="progress-top">
+      <span class="progress-label">Progreso del examen</span>
+      <span class="progress-count" id="progress-text">0 / 40</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-topics" id="topic-dots"></div>
+  </div>
+
+  <!-- SCORE LIVE -->
+  <div class="score-live">
+    <div class="score-card correct"><div class="val" id="sc-correct">0</div><div class="lbl">✅ Correctas</div></div>
+    <div class="score-card wrong"><div class="val" id="sc-wrong">0</div><div class="lbl">❌ Incorrectas</div></div>
+    <div class="score-card blank"><div class="val" id="sc-blank">40</div><div class="lbl">⬜ Sin contestar</div></div>
+    <div class="score-card total"><div class="val" id="sc-total">—</div><div class="lbl">📊 Nota parcial</div></div>
+  </div>
+
+  <!-- FILTER -->
+  <div class="filter-row" id="filter-row">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="T1-T4">Temas 1-4</button>
+    <button class="filter-btn" data-filter="T5-T7">Temas 5-7</button>
+    <button class="filter-btn" data-filter="T8-T9">Temas 8-9</button>
+    <button class="filter-btn" data-filter="T10-T12">Temas 10-12</button>
+    <button class="filter-btn" data-filter="calc">Cálculo 🔢</button>
+    <button class="filter-btn" data-filter="wrong">Falladas</button>
+    <button class="filter-btn" data-filter="unanswered">Sin contestar</button>
+  </div>
+
+  <!-- RESULTS PANEL -->
+  <div id="results-panel">
+    <h2>Resultado Final</h2>
+    <div class="result-grade" id="res-grade">—</div>
+    <div id="res-msg" style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:1rem;"></div>
+    <div class="result-stats">
+      <div class="rstat rc"><div class="rv" id="res-correct">0</div><div class="rl">Correctas</div></div>
+      <div class="rstat rw"><div class="rv" id="res-wrong">0</div><div class="rl">Incorrectas</div></div>
+      <div class="rstat rb"><div class="rv" id="res-blank">0</div><div class="rl">En blanco</div></div>
+    </div>
+    <div class="penalty-note">Fórmula: (correctas × 1) + (incorrectas × −0.25) + (en blanco × 0). Nota prorratada sobre 10.</div>
+    <button class="btn btn-primary" onclick="resetExam()" style="margin-top:1.25rem;">🔄 Reiniciar examen</button>
+
+    <!-- TOPIC BREAKDOWN -->
+    <div class="topic-breakdown" id="topic-breakdown"></div>
+
+    <!-- SESSION HISTORY -->
+    <div class="session-history" id="session-history">
+      <h3>📈 Historial de sesiones</h3>
+      <div id="history-list-container"></div>
+      <button class="history-clear" onclick="clearHistory()">Borrar historial</button>
+    </div>
+
+  </div>
+
+  <!-- QUESTIONS -->
+  <div class="questions-list" id="questions-list"></div>
+
+  <!-- ACTION BAR -->
+  <div class="action-bar">
+    <button class="btn btn-outline" onclick="showResults()">📊 Ver resultado parcial</button>
+    <button class="btn btn-primary" onclick="submitExam()">Entregar examen</button>
+  </div>
+
+</div>
+
+<!-- SCROLL TOP -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+
+
+<!-- SCROLL TOP -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+// ===== DATA =====
+const QUESTIONS = [
+  // T1 — CONCEPTOS BÁSICOS
+  { id:1, topic:"T1", label:"Tema 1 · Conceptos básicos", diff:"easy", text:"¿Cuál de las siguientes definiciones describe mejor el concepto de empresa?", opts:["Una organización que persigue fines sociales sin ánimo de lucro","Una organización que obtiene beneficios económicos para sus propietarios mediante la comercialización de productos y/o servicios","Cualquier institución pública o privada que gestiona recursos humanos","Un sistema de producción que minimiza costes a cualquier precio"], correct:1, explanation:"La empresa se define como una organización que persigue la obtención de beneficios económicos para sus propietarios, comercializando productos/servicios y empleando recursos materiales, humanos, financieros y de información." },
+  { id:2, topic:"T1", label:"Tema 1 · Conceptos básicos", diff:"medium", text:"Según el modelo de los 4 elementos básicos de la empresa, ¿cuál es el orden correcto de la cadena lógica?", opts:["Recursos → Funciones → Decisiones → Objetivos","Objetivos → Decisiones → Funciones → Recursos","Decisiones → Objetivos → Recursos → Funciones","Funciones → Recursos → Objetivos → Decisiones"], correct:1, explanation:"El establecimiento de Objetivos lleva a tomar Decisiones para lograrlos; las Decisiones son ejecutadas por las Funciones; y para operar, las Funciones necesitan Recursos." },
+  { id:3, topic:"T1", label:"Tema 1 · Conceptos básicos", diff:"medium", text:"¿Qué tipo de capacidad permite a una empresa incorporar nuevos recursos, generar nuevas combinaciones y aprender más rápido que la competencia?", opts:["Capacidad estática","Capacidad funcional","Capacidad dinámica","Capacidad grupal"], correct:2, explanation:"Las capacidades dinámicas permiten la incorporación y descubrimiento de nuevos recursos, generando nuevas combinaciones. Incluyen la capacidad de adaptación, innovación y absorción." },
+
+  // T2 — TIPOS DE EMPRESAS
+  { id:4, topic:"T2", label:"Tema 2 · Tipos de empresas", diff:"easy", text:"¿Cuál es el capital social mínimo requerido para constituir una Sociedad Anónima (SA)?", opts:["3.000 €","3.012 €","60.101 €","120.202 €"], correct:2, explanation:"El capital social mínimo para una SA es de 60.101 €, dividido en acciones, con al menos un 25% del valor nominal desembolsado en el momento de la constitución." },
+  { id:5, topic:"T2", label:"Tema 2 · Tipos de empresas", diff:"medium", text:"En una Sociedad Cooperativa, ¿cómo se reparte el excedente cooperativo?", opts:["En función del capital aportado, igual que en una SA","En función de la actividad realizada por cada socio, con retribución al capital limitada","Únicamente entre los socios trabajadores indefinidos","En partes iguales entre todos los socios independientemente de su actividad"], correct:1, explanation:"En una cooperativa, el excedente se reparte en función de la actividad (no del capital), y la retribución al capital está limitada y prefijada, lo que refleja su carácter no lucrativo." },
+  { id:6, topic:"T2", label:"Tema 2 · Tipos de empresas", diff:"hard", text:"Según el PGC 2007, ¿qué límite de trabajadores define a una empresa pequeña?", opts:["Menos de 10 trabajadores","Menos de 50 trabajadores","Menos de 100 trabajadores","Menos de 250 trabajadores"], correct:1, explanation:"Según los criterios del PGC 2007, las pequeñas empresas tienen menos de 50 trabajadores, activo total ≤ 2.850.000 € y ventas netas ≤ 5.700.000 €." },
+
+  // T3 — ENTORNO
+  { id:7, topic:"T3", label:"Tema 3 · El entorno", diff:"easy", text:"¿Cuál de los siguientes factores forma parte del entorno GENERAL (macroentorno) de la empresa y NO del entorno específico?", opts:["Competidores directos del sector","Proveedores de materias primas","Factores tecnológicos y legislativos del país","Clientes actuales del mercado objetivo"], correct:2, explanation:"El macroentorno o entorno general incluye factores políticos, económicos, socioculturales y tecnológicos (análisis PEST). Los competidores, proveedores y clientes forman el microentorno o entorno específico." },
+  { id:8, topic:"T3", label:"Tema 3 · El entorno", diff:"medium", text:"En el análisis DAFO, ¿qué combinación de factores representa la 'situación ideal — posibilidad de conquista'?", opts:["Debilidades internas + Amenazas externas","Fortalezas internas + Oportunidades externas","Debilidades internas + Oportunidades externas","Fortalezas internas + Amenazas externas"], correct:1, explanation:"La combinación Fortalezas + Oportunidades es la situación ideal: la empresa puede aprovechar sus puntos fuertes para explotar oportunidades del mercado." },
+
+  // T4 — OBJETIVOS
+  { id:9, topic:"T4", label:"Tema 4 · Objetivos", diff:"medium", text:"¿Cuál de las siguientes es una crítica válida a la maximización del beneficio contable como objetivo empresarial?", opts:["El beneficio contable es siempre un indicador fiable y objetivo","El beneficio contable considera el coste de oportunidad del capital empleado","El beneficio contable es manipulable contablemente y no informa del nivel de riesgo","El beneficio contable siempre maximiza el valor para el accionista"], correct:2, explanation:"El beneficio contable puede ser manipulado (maquillaje contable), es estático, no informa del nivel de riesgo y no considera los flujos de caja futuros ni los recursos intangibles." },
+  { id:10, topic:"T4", label:"Tema 4 · Objetivos", diff:"hard", text:"El ratio Q de Tobin se interpreta como: si Q > 1, entonces la empresa...", opts:["Destruye valor porque su valor de mercado es inferior al de reposición","Crea valor porque el mercado la valora por encima del coste de reposición de sus activos","Es ineficiente en el uso de sus recursos","Tiene una rentabilidad económica inferior al coste del capital"], correct:1, explanation:"Q de Tobin = valor de mercado / valor de reposición de activos. Si Q > 1, el mercado valora la empresa por encima del coste de sus activos, indicando creación de valor." },
+
+  // T5 — FUNCIÓN DIRECTIVA
+  { id:11, topic:"T5", label:"Tema 5 · Función directiva", diff:"easy", text:"Las decisiones estratégicas se caracterizan por tener una perspectiva de:", opts:["Menos de un año, centradas en operaciones diarias","Uno a dos años, afectando a subunidades funcionales","Dos a cinco años, afectando a la organización en su conjunto y siendo difícilmente reversibles","Seis meses, centradas en el control presupuestario"], correct:2, explanation:"Las decisiones estratégicas tienen una perspectiva de largo plazo (2-5 años), afectan a la organización en su conjunto, comprometen recursos importantes y son difícilmente reversibles." },
+  { id:12, topic:"T5", label:"Tema 5 · Función directiva", diff:"medium", text:"¿Cuál de las siguientes es una característica de las decisiones OPERATIVAS?", opts:["Afectan a toda la empresa y tienen horizonte temporal de 2-5 años","Se centran en subunidades como departamentos, con consecuencias a medio plazo","Tienen perspectiva de tiempo generalmente menor a un año y se miden en base diaria o semanal","Requieren análisis con elevada incertidumbre y experiencia previa escasa"], correct:2, explanation:"Las decisiones operativas tienen una perspectiva corta (generalmente menos de un año), se centran en actividades operativas del día a día y suelen medirse sobre una base diaria o semanal." },
+
+  // T6 — DIRECCIÓN ESTRATÉGICA
+  { id:13, topic:"T6", label:"Tema 6 · Dirección estratégica", diff:"medium", text:"En la Cadena de Valor de Porter, ¿cuáles son las 'actividades primarias'?", opts:["Infraestructura, RRHH, tecnología y aprovisionamiento","Logística interna, producción, logística externa, marketing y servicio posventa","I+D, finanzas, producción y recursos humanos","Abastecimiento, diseño, fabricación y distribución exclusivamente"], correct:1, explanation:"Las actividades primarias de Porter son: logística interna, producción/operaciones, logística externa, marketing/ventas y servicio posventa. Las actividades de apoyo son: infraestructura, RRHH, tecnología y aprovisionamiento." },
+  { id:14, topic:"T6", label:"Tema 6 · Dirección estratégica", diff:"hard", text:"Para que un recurso genere una ventaja competitiva SOSTENIBLE, debe ser simultáneamente:", opts:["Tangible, costoso y disponible en el mercado","Valioso, escaso e inimitable","Valioso, abundante y fácil de imitar","Intangible, privado y no cuantificable"], correct:1, explanation:"Un recurso genera ventaja competitiva sostenible solo si es: (1) Valioso —crea utilidad para el cliente—, (2) Escaso —su oferta es menor que la demanda—, (3) Inimitable —difícil de copiar—." },
+  { id:15, topic:"T6", label:"Tema 6 · Dirección estratégica", diff:"hard", text:"¿Cuál de las siguientes afirmaciones sobre el control de estrategia es CORRECTA?", opts:["El control del comportamiento es siempre menos costoso que el control de resultados","El control de los inventarios es más costoso que el control de los flujos","Controlar comportamientos es más costoso que controlar resultados; controlar flujos es más costoso que controlar inventarios","Todos los tipos de control tienen el mismo coste independientemente del objeto controlado"], correct:2, explanation:"Según el tema, en general es más costoso el control del comportamiento que el de resultados, y el control de los flujos que el de los inventarios." },
+
+  // T7 — ESTRATEGIAS CORPORATIVAS
+  { id:16, topic:"T7", label:"Tema 7 · Estrategias corporativas", diff:"easy", text:"La estrategia de 'Penetración en el mercado' consiste en:", opts:["Competir en nuevos mercados con nuevos productos","Competir en el mercado actual con nuevos productos","Competir en el mismo mercado con el mismo producto, intentando incrementar ventas","Reducir la presencia en el mercado para consolidar la posición"], correct:2, explanation:"La penetración en el mercado implica competir en el mismo mercado con el mismo producto, aumentando ventas a clientes actuales o captando nuevos, sin modificar el producto ni el mercado." },
+  { id:17, topic:"T7", label:"Tema 7 · Estrategias corporativas", diff:"medium", text:"Según Rumelt, una empresa tiene diversificación RELACIONADA cuando su ratio de relación entre negocios es:", opts:["Menor a 0.3","Entre 0.3 y 0.5","Igual o mayor a 0.7","Exactamente 1.0"], correct:2, explanation:"El ratio de Rumelt = ventas en negocios relacionados / ventas totales. Si es ≥ 0.7 → diversificación relacionada; si es < 0.7 → diversificación no relacionada (conglomerado)." },
+  { id:18, topic:"T7", label:"Tema 7 · Estrategias corporativas", diff:"medium", text:"En una OPA hostil, los directivos de la empresa objetivo suelen recurrir a la figura del:", opts:["Management buyout (MBO)","Caballero blanco (white knight)","Compra apalancada (LBO)","Spin-off de activos"], correct:1, explanation:"Ante una OPA hostil —que busca sustituir al equipo directivo—, los directivos de la empresa objetivo suelen buscar un 'caballero blanco', es decir, un comprador amistoso alternativo." },
+  { id:19, topic:"T7", label:"Tema 7 · Estrategias corporativas", diff:"hard", text:"¿Cuál de las siguientes es la estrategia de internacionalización más adecuada cuando existe demanda homogénea, no hay necesidad de adaptación local y los productos son estandarizados?", opts:["Estrategia multidoméstica","Estrategia transnacional","Estrategia global","Estrategia glocal"], correct:2, explanation:"La estrategia global utiliza la misma estrategia en todos los países, toma decisiones centralizadas y es apropiada cuando la demanda es homogénea y los productos son estandarizados. Logra economías de escala y calidad homogénea." },
+  { id:20, topic:"T7", label:"Tema 7 · Estrategias corporativas", diff:"medium", text:"La ventaja competitiva basada en LIDERAZGO EN COSTES se obtiene principalmente a través de:", opts:["Diferenciar el producto mediante atributos únicos percibidos por el cliente","Economías de escala, efecto experiencia, mejoras tecnológicas en procesos y especialización","Segmentar el mercado en nichos específicos de alto valor","Incrementar los gastos en publicidad y distribución exclusiva"], correct:1, explanation:"Las fuentes de ventaja competitiva en costes incluyen: economías de escala, efecto experiencia, mejoras tecnológicas en procesos, capacidad para ajustar capacidad a la demanda, y poder de negociación con proveedores." },
+
+  // T8 — DISEÑO ORGANIZATIVO
+  { id:21, topic:"T8", label:"Tema 8 · Diseño organizativo", diff:"medium", text:"¿Cuál es la diferencia fundamental entre una estructura ORGÁNICA y una estructura BUROCRÁTICA?", opts:["La burocrática tiene más niveles jerárquicos pero es más flexible y adaptable","La orgánica es propia de producción flexible con trabajadores polivalentes; la burocrática es propia de producción en masa con poca autonomía","La orgánica siempre tiene mayor tamaño y más recursos que la burocrática","No hay diferencias significativas entre ambas en entornos estables"], correct:1, explanation:"La estructura orgánica corresponde a la producción flexible/artesanal: trabajadores polivalentes y cualificados, alta autonomía. La burocrática corresponde a la producción en masa: trabajadores poco cualificados, poca autonomía, alta eficiencia." },
+
+  // T9 — FUNCIÓN DE PRODUCCIÓN
+  { id:22, topic:"T9", label:"Tema 9 · Función de producción", diff:"easy", text:"¿Cómo se define la Productividad Total?", opts:["Relación entre el volumen de producción y un único factor como la mano de obra","Relación entre el volumen de producción y el conjunto de todos los factores empleados","Diferencia entre ingresos totales y costes variables de producción","Cociente entre costes fijos y costes variables unitarios"], correct:1, explanation:"Productividad Total = Bienes y Servicios / (Mano de obra + Capital + Materias primas + Energía). La productividad parcial solo relaciona la producción con un factor concreto (p.ej., mano de obra)." },
+  { id:23, topic:"T9", label:"Tema 9 · Función de producción", diff:"medium", text:"¿Qué tipo de sistema productivo utiliza maquinaria de uso específico con costes fijos elevados, volumen de producción alto y trabajadores poco cualificados?", opts:["Producción artesanal","Producción por lotes","Producción flexible","Producción en masa o continua"], correct:3, explanation:"La producción rígida (en masa o continua) se caracteriza por: objetivo de eficiencia, alto volumen, poca variedad, maquinaria de uso específico con CF elevados, costes variables bajos y trabajadores poco cualificados." },
+  { id:24, topic:"T9", label:"Tema 9 · Función de producción", diff:"medium", text:"El sistema JIT (Just In Time) se basa en la 'Teoría de los Cinco Ceros'. ¿Cuáles son esos cinco ceros?", opts:["Cero costes, cero defectos, cero stocks, cero plazos, cero empleados","Cero defectos, cero averías, cero stocks, cero plazos, cero papel (burocracia)","Cero defectos, cero costes fijos, cero inventarios, cero plazos, cero papel","Cero averías, cero desperdicios, cero stocks, cero horas extra, cero papel"], correct:1, explanation:"La Teoría de los Cinco Ceros del JIT es: (1) Cero defectos, (2) Cero averías, (3) Cero stocks, (4) Cero plazos, (5) Cero papel/burocracias." },
+
+  // T9 CÁLCULO — PUNTO MUERTO
+  { id:25, topic:"T9", label:"Tema 9 · Punto muerto 🔢", diff:"hard", type:"calc", text:"Una empresa vende envases a 10 €/ud. Costes fijos: 1.200 €. Coste variable unitario: 4 €. ¿Cuál es el punto muerto (Qo)?", formula:"Qo = CF / (P − cv) = 1.200 / (10 − 4)", opts:["150 unidades","200 unidades","240 unidades","300 unidades"], correct:1, explanation:"Qo = CF / (P − cv) = 1.200 / (10 − 4) = 1.200 / 6 = 200 unidades. A partir de 200 unidades la empresa empieza a obtener beneficios." },
+  { id:26, topic:"T9", label:"Tema 9 · Apalancamiento 🔢", diff:"hard", type:"calc", text:"La empresa del ejercicio anterior vende 300 unidades. ¿Cuál es el Apalancamiento Operativo (Ao)?", formula:"Ao = Q × MBu / (Q × MBu − CF) = Q / (Q − Qo)", opts:["Ao = 1","Ao = 2","Ao = 3","Ao = 4"], correct:2, explanation:"Ao = Q / (Q − Qo) = 300 / (300 − 200) = 300/100 = 3. Esto significa que un incremento del 1% en ventas produce un incremento del 3% en beneficios." },
+  { id:27, topic:"T9", label:"Tema 9 · Punto muerto 🔢", diff:"hard", type:"calc", text:"Una empresa tiene: precio 10€, cv = 3€, CF = 1.000€. ¿Cuántas unidades necesita vender para empezar a obtener beneficios?", formula:"Qo = CF / (P − cv) = 1.000 / (10 − 3)", opts:["100 unidades","~143 unidades","200 unidades","250 unidades"], correct:1, explanation:"Qo = 1.000 / (10 − 3) = 1.000 / 7 ≈ 142,86 → 143 unidades. Necesita vender al menos 143 unidades para cubrir costes y empezar a obtener beneficios." },
+
+  // T9 CÁLCULO — MODELO WILSON
+  { id:28, topic:"T9", label:"Tema 9 · Modelo Wilson 🔢", diff:"hard", type:"calc", text:"En el modelo de Wilson, ¿cuál es la fórmula del lote óptimo de pedido (Q*)?", formula:"Minimiza: CTA = DP + R(D/Q) + (A+Pi)(Q/2)", opts:["Q* = √(2RD / (A+Pi))","Q* = 2RD / (A+Pi)","Q* = √(RD / 2(A+Pi))","Q* = D / R × (A+Pi)"], correct:0, explanation:"El lote óptimo de Wilson se obtiene derivando la función CTA respecto a Q e igualando a cero: Q* = √(2RD/(A+Pi)), donde R=coste emisión pedido, D=demanda anual, A=coste almacenamiento unitario, i=coste capital, P=precio." },
+
+  // T10 — RRHH
+  { id:29, topic:"T10", label:"Tema 10 · RRHH", diff:"easy", text:"¿Cuál es el objetivo principal del proceso de RECLUTAMIENTO en la dirección de RRHH?", opts:["Seleccionar al candidato más adecuado entre los aspirantes reclutados","Atraer a un conjunto suficiente de candidatos potencialmente válidos para cubrir un puesto","Formar al nuevo empleado en las tareas específicas del puesto","Evaluar el desempeño del trabajador durante su primer año"], correct:1, explanation:"El reclutamiento es el proceso de búsqueda y atracción de candidatos potencialmente válidos para cubrir una vacante. La selección es el paso posterior, que elige al mejor candidato entre los reclutados." },
+  { id:30, topic:"T10", label:"Tema 10 · RRHH", diff:"medium", text:"¿Qué distingue principalmente la motivación intrínseca de la extrínseca?", opts:["La intrínseca depende de recompensas monetarias; la extrínseca de reconocimiento social","La intrínseca proviene de la satisfacción derivada de la propia actividad; la extrínseca depende de recompensas externas (salario, incentivos)","La intrínseca es más poderosa en cargos directivos; la extrínseca funciona solo en operarios","No existe diferencia real entre ambas según las teorías modernas de motivación"], correct:1, explanation:"La motivación intrínseca surge del trabajo en sí mismo (satisfacción, aprendizaje, logro). La extrínseca proviene de factores externos como salario, bonos o reconocimiento. Herzberg distinguió factores higiénicos (extrínsecos) y motivadores (intrínsecos)." },
+
+  // T11 — COMERCIALIZACIÓN
+  { id:31, topic:"T11", label:"Tema 11 · Comercialización", diff:"easy", text:"¿Cuál es la diferencia entre el 'canal directo' y el 'canal corto' en distribución comercial?", opts:["No hay diferencia; ambos implican venta directa sin intermediarios","Canal directo: fabricante vende al consumidor final sin intermediarios. Canal corto: un único intermediario entre fabricante y consumidor","Canal directo tiene un intermediario; canal corto tiene dos o más","Canal directo es exclusivo de productos de lujo; canal corto de productos de consumo masivo"], correct:1, explanation:"Canal directo: fabricante → consumidor (sin intermediarios). Canal corto: un único intermediario (p.ej. minorista). Canal largo: varios intermediarios (mayorista + minorista)." },
+  { id:32, topic:"T11", label:"Tema 11 · Comercialización", diff:"medium", text:"En la fijación de precios, el 'precio técnico' hace referencia a:", opts:["El precio más alto que el mercado está dispuesto a pagar","El precio que cubre exactamente los costes totales de producción (punto muerto)","El precio que maximiza el margen bruto sobre costes variables","El precio fijado por la competencia como referencia del sector"], correct:1, explanation:"El precio técnico (o precio límite inferior) es el precio mínimo que cubre todos los costes, es decir, el precio equivalente al punto muerto. Por debajo de este precio la empresa incurre en pérdidas." },
+  { id:33, topic:"T11", label:"Tema 11 · Comercialización", diff:"medium", text:"¿Cuál de los siguientes NO es un criterio válido para una segmentación de mercado efectiva?", opts:["El segmento debe ser medible y cuantificable","El segmento debe ser rentable y de tamaño suficiente","El segmento debe ser accesible para poder dirigir acciones de marketing","El segmento debe estar formado exclusivamente por consumidores finales, nunca empresas"], correct:3, explanation:"Los criterios de una segmentación efectiva son: medible, rentable, accesible. La segmentación puede aplicarse tanto a consumidores finales (B2C) como a empresas (B2B), no es un requisito excluir a las empresas." },
+  { id:34, topic:"T11", label:"Tema 11 · Comercialización", diff:"hard", text:"La evolución de la función comercial sigue el orden correcto:", opts:["Cliente → Ventas → Producto → Producción → Mercado","Producción → Producto → Ventas → Cliente → Mercado","Ventas → Producción → Cliente → Producto → Mercado","Producto → Mercado → Ventas → Cliente → Producción"], correct:1, explanation:"La evolución histórica de la orientación comercial es: Producción (reducir costes) → Producto (mejor producto) → Ventas (convencer al cliente) → Cliente (satisfacer necesidades) → Mercado (satisfacer sin perder de vista competencia)." },
+
+  // T12 — FUNCIÓN FINANCIERA
+  { id:35, topic:"T12", label:"Tema 12 · Función financiera", diff:"medium", text:"¿Cuál es la diferencia entre LEASING FINANCIERO y LEASING OPERATIVO?", opts:["El leasing financiero puede rescindirse en cualquier momento; el operativo no","El leasing operativo puede rescindirse unilateralmente en cualquier momento; el financiero no puede revocarse antes de su término","Ambos pueden rescindirse con la misma facilidad; la diferencia está solo en el coste","El leasing financiero es más barato; el operativo es irrevocable"], correct:1, explanation:"En el leasing operativo el arrendatario puede rescindir antes de tiempo sin penalización; en el leasing financiero NO se puede revocar antes de su término. El leasing operativo es más caro que el financiero." },
+  { id:36, topic:"T12", label:"Tema 12 · Función financiera", diff:"hard", text:"La Rentabilidad Económica (ROA) se descompone en el esquema Du Pont como:", opts:["Beneficio Neto / Fondos Propios","(BAIT / Ventas) × (Ventas / Activo Total)","(Beneficio / Ventas) × (Activo / Fondos Propios)","BAIT / (Fondos Propios + Deuda)"], correct:1, explanation:"ROA = BAIT / Activo Total = (BAIT/Ventas) × (Ventas/Activo Total) = Margen sobre ventas × Rotación de activos. Este es el esquema Du Pont para la rentabilidad económica." },
+  { id:37, topic:"T12", label:"Tema 12 · Función financiera", diff:"hard", text:"Un proyecto de inversión debe aceptarse según el criterio del VAN cuando:", opts:["VAN < 0, indicando que genera costes menores al retorno","VAN = 0, indicando equilibrio entre inversión y retorno","VAN > 0, indicando que los flujos descontados superan la inversión inicial","TIR < k (coste de oportunidad del capital)"], correct:2, explanation:"VAN > 0: el proyecto genera más valor del que cuesta financiarlo. Son preferibles los proyectos con mayor VAN. Si VAN = 0, la inversión exactamente cubre el coste de capital (indiferente). Si VAN < 0, se destruye valor." },
+
+  // CÁLCULO FINANCIERO
+  { id:38, topic:"T12", label:"Tema 12 · Rentabilidad 🔢", diff:"hard", type:"calc", text:"Una empresa tiene: BAIT = 1.000€, Ventas = 10.000€, Activo Total = 5.000€. ¿Cuál es su Rentabilidad Económica (ROA)?", formula:"ROA = BAIT / Activo = (BAIT/Ventas) × (Ventas/Activo)", opts:["ROA = 5%","ROA = 10%","ROA = 20%","ROA = 25%"], correct:2, explanation:"ROA = BAIT / Activo Total = 1.000 / 5.000 = 0,20 = 20%. También: Margen = 1.000/10.000 = 10%; Rotación = 10.000/5.000 = 2. ROA = 10% × 2 = 20%." },
+  { id:39, topic:"T12", label:"Tema 12 · Apalancamiento financiero 🔢", diff:"hard", type:"calc", text:"Una empresa tiene Rentabilidad Económica del 15% y coste de la deuda del 8%. Si se financia al 60% con fondos ajenos, el apalancamiento financiero es:", opts:["Negativo, porque el coste de la deuda supera la rentabilidad económica","Positivo, porque la rentabilidad económica (15%) supera el coste de la deuda (8%)","Nulo, porque ambos factores se compensan exactamente","Imposible de determinar sin conocer el beneficio neto"], correct:1, explanation:"El apalancamiento financiero es POSITIVO cuando RE > i (coste de la deuda): 15% > 8%. En este caso endeudarse aumenta la rentabilidad financiera (ROE) por encima de la económica (ROA)." },
+
+  // T9 INVENTARIOS
+  { id:40, topic:"T9", label:"Tema 9 · Inventarios 🔢", diff:"hard", type:"calc", text:"¿Cuál es el Punto de Pedido (Qp) en la gestión de inventarios según el modelo Wilson, si la demanda diaria es 10 ud/día y el plazo de reaprovisionamiento es 5 días?", formula:"Qp = L × d (plazo × demanda diaria)", opts:["Qp = 2 unidades","Qp = 15 unidades","Qp = 50 unidades","Qp = 100 unidades"], correct:2, explanation:"Punto de pedido Qp = L × d = 5 días × 10 ud/día = 50 unidades. Se debe realizar el pedido cuando el inventario baje a 50 unidades, para que llegue justo cuando el almacén se vacíe." }
+];
+
+
+const TOPIC_GROUPS = {
+  "T1-T4": ["T1","T2","T3","T4"],
+  "T5-T7": ["T5","T6","T7"],
+  "T8-T9": ["T8","T9"],
+  "T10-T12": ["T10","T11","T12"]
+};
+
+
+// ===== STATE =====
+let answers = {};
+let submitted = {};
+let activeFilter = "all";
+
+// ===== NEW STATE =====
+let currentMode = 'exam';
+let shuffleEnabled = false;
+let questionOrder = QUESTIONS.map(q => q.id);
+
+// TIMER
+let timerSeconds = 60 * 60;
+let timerRunning = false;
+let timerInterval = null;
+const TIMER_TOTAL = 60 * 60;
+
+// FLASHCARD
+let fcIndex = 0;
+let fcOrder = [];
+let fcKnew = 0;
+let fcDidnt = 0;
+let fcRevealed = false;
+
+// ===== TOPIC LABELS =====
+const TOPIC_LABELS = {
+  T1: 'T1 · Conceptos básicos', T2: 'T2 · Tipos de empresa', T3: 'T3 · Entorno',
+  T4: 'T4 · Objetivos', T5: 'T5 · Func. directiva', T6: 'T6 · Dir. estratégica',
+  T7: 'T7 · Estrategias corp.', T8: 'T8 · Diseño organizativo', T9: 'T9 · Producción',
+  T10: 'T10 · RRHH', T11: 'T11 · Comercialización', T12: 'T12 · Func. financiera'
+};
+
+// ===== TOAST =====
+function showToast(msg, duration) {
+  duration = duration || 2000;
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), duration);
+}
+
+// ===== MODE =====
+function setMode(mode) {
+  currentMode = mode;
+  ['exam','study','flash'].forEach(function(m) {
+    const btn = document.getElementById('mode-' + m);
+    if (btn) btn.classList.remove('active','active-study','active-flash');
+  });
+  const activeBtn = document.getElementById('mode-' + mode);
+  if (activeBtn) {
+    if (mode === 'exam') activeBtn.classList.add('active');
+    else if (mode === 'study') activeBtn.classList.add('active-study');
+    else if (mode === 'flash') activeBtn.classList.add('active-flash');
+  }
+
+  const examUi = document.getElementById('questions-list');
+  const filterRow = document.getElementById('filter-row');
+  const actionBar = document.querySelector('.action-bar');
+  const scoreDiv = document.querySelector('.score-live');
+  const progressDiv = document.querySelector('.progress-bar-wrap');
+  const flashView = document.getElementById('flashcard-view');
+
+  if (mode === 'flash') {
+    examUi.style.display = 'none';
+    filterRow.style.display = 'none';
+    actionBar.style.display = 'none';
+    flashView.style.display = 'block';
+    progressDiv.style.display = 'none';
+    scoreDiv.style.display = 'none';
+    initFlashcards();
+  } else {
+    examUi.style.display = 'flex';
+    filterRow.style.display = 'flex';
+    actionBar.style.display = 'flex';
+    flashView.style.display = 'none';
+    progressDiv.style.display = 'block';
+    scoreDiv.style.display = 'grid';
+    if (mode === 'study') showToast('📖 Modo Estudio: puedes revisar respuestas libremente');
+    renderQuestions();
+  }
+}
+
+// ===== SHUFFLE =====
+function toggleShuffle() {
+  shuffleEnabled = !shuffleEnabled;
+  const btn = document.getElementById('shuffle-btn');
+  if (btn) btn.classList.toggle('active', shuffleEnabled);
+  if (shuffleEnabled) {
+    questionOrder = QUESTIONS.map(q => q.id).sort(() => Math.random() - 0.5);
+    showToast('🔀 Preguntas aleatorizadas');
+  } else {
+    questionOrder = QUESTIONS.map(q => q.id);
+    showToast('🔢 Orden original restaurado');
+  }
+  if (currentMode === 'flash') initFlashcards();
+  else renderQuestions();
+}
+
+function getOrderedQuestions() {
+  return questionOrder.map(id => QUESTIONS.find(q => q.id === id));
+}
+
+// ===== TIMER =====
+function timerToggle() {
+  if (timerRunning) {
+    timerRunning = false;
+    clearInterval(timerInterval);
+    document.getElementById('timer-start-btn').textContent = '▶ Reanudar';
+  } else {
+    timerRunning = true;
+    timerInterval = setInterval(timerTick, 1000);
+    document.getElementById('timer-start-btn').textContent = '⏸ Pausar';
+  }
+}
+
+function timerReset() {
+  timerRunning = false;
+  clearInterval(timerInterval);
+  timerSeconds = TIMER_TOTAL;
+  const startBtn = document.getElementById('timer-start-btn');
+  if (startBtn) startBtn.textContent = '▶ Iniciar';
+  updateTimerDisplay();
+}
+
+function timerTick() {
+  if (timerSeconds <= 0) {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    document.getElementById('timer-display').textContent = '00:00';
+    showToast('⏰ ¡Tiempo agotado! Entregando examen...', 3000);
+    setTimeout(() => submitExam(), 1500);
+    return;
+  }
+  timerSeconds--;
+  updateTimerDisplay();
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(timerSeconds / 60);
+  const s = timerSeconds % 60;
+  const str = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  const display = document.getElementById('timer-display');
+  const fill = document.getElementById('timer-fill');
+  if (!display || !fill) return;
+  const pct = (timerSeconds / TIMER_TOTAL) * 100;
+  display.textContent = str;
+  fill.style.width = pct + '%';
+  display.classList.remove('warning','danger');
+  fill.classList.remove('warning','danger');
+  if (timerSeconds <= 300) { display.classList.add('danger'); fill.classList.add('danger'); }
+  else if (timerSeconds <= 600) { display.classList.add('warning'); fill.classList.add('warning'); }
+}
+
+// ===== FLASHCARDS =====
+function initFlashcards() {
+  fcOrder = shuffleEnabled
+    ? [...questionOrder]
+    : QUESTIONS.map(q => q.id);
+  fcIndex = 0;
+  fcKnew = 0;
+  fcDidnt = 0;
+  renderFlashcard();
+}
+
+function renderFlashcard() {
+  const total = fcOrder.length;
+  if (total === 0) return;
+  const q = QUESTIONS.find(q => q.id === fcOrder[fcIndex]);
+  if (!q) return;
+  fcRevealed = false;
+
+  document.getElementById('fc-topic-label').textContent = q.label;
+  document.getElementById('fc-question').textContent = q.text;
+  document.getElementById('fc-counter').textContent = (fcIndex + 1) + ' / ' + total;
+  document.getElementById('fc-progress-fill').style.width = ((fcIndex / total) * 100) + '%';
+  document.getElementById('fc-hint').textContent = 'Toca la tarjeta para ver la respuesta';
+
+  const formula = document.getElementById('fc-formula');
+  if (q.formula) { formula.textContent = q.formula; formula.style.display = 'block'; }
+  else { formula.style.display = 'none'; }
+
+  const answerEl = document.getElementById('fc-answer');
+  answerEl.classList.remove('visible');
+  document.getElementById('fc-answer-text').textContent = q.opts[q.correct];
+  document.getElementById('fc-explanation').textContent = q.explanation;
+  document.getElementById('fc-actions').style.display = 'none';
+
+  const stats = document.getElementById('fc-stats');
+  if (stats) {
+    stats.textContent = (fcKnew + fcDidnt > 0)
+      ? '✅ Sabidas: ' + fcKnew + '  ·  ❌ No sabidas: ' + fcDidnt
+      : '';
+  }
+}
+
+function fcReveal() {
+  if (fcRevealed) return;
+  fcRevealed = true;
+  document.getElementById('fc-answer').classList.add('visible');
+  document.getElementById('fc-hint').textContent = '¿Lo sabías?';
+  document.getElementById('fc-actions').style.display = 'flex';
+}
+
+function fcNext(knew) {
+  if (knew === true) fcKnew++;
+  else if (knew === false) fcDidnt++;
+  const total = fcOrder.length;
+  if (fcIndex < total - 1) {
+    fcIndex++;
+    renderFlashcard();
+  } else {
+    document.getElementById('fc-question').textContent = '🎉 ¡Completado! ' + fcKnew + '/' + total + ' sabidas. ' + fcDidnt + ' para repasar.';
+    document.getElementById('fc-topic-label').textContent = 'Fin del mazo';
+    document.getElementById('fc-hint').textContent = 'Pulsa ← Anterior para repasar o cambia de modo';
+    document.getElementById('fc-answer').classList.remove('visible');
+    document.getElementById('fc-actions').style.display = 'none';
+    document.getElementById('fc-progress-fill').style.width = '100%';
+    document.getElementById('fc-formula').style.display = 'none';
+  }
+}
+
+function fcPrev() {
+  if (fcIndex > 0) { fcIndex--; renderFlashcard(); }
+}
+
+// ===== INIT =====
+function init() {
+  renderTopicDots();
+  renderQuestions();
+  updateScore();
+  renderSessionHistory();
+}
+
+function renderTopicDots() {
+  const topics = [...new Set(QUESTIONS.map(q => q.topic))];
+  const container = document.getElementById("topic-dots");
+  container.innerHTML = topics.map(t => `<span class="topic-dot" id="dot-${t}">${t}</span>`).join("");
+}
+
+function getFilteredQuestions() {
+  const ordered = getOrderedQuestions();
+  if (activeFilter === "all") return ordered;
+  if (activeFilter === "calc") return ordered.filter(q => q.type === "calc");
+  if (activeFilter === "wrong") return ordered.filter(q => submitted[q.id] && answers[q.id] !== undefined && answers[q.id] !== null && answers[q.id] !== q.correct);
+  if (activeFilter === "unanswered") return ordered.filter(q => answers[q.id] === undefined);
+  if (TOPIC_GROUPS[activeFilter]) return ordered.filter(q => TOPIC_GROUPS[activeFilter].includes(q.topic));
+  return ordered;
+}
+
+function renderQuestions() {
+  const list = document.getElementById("questions-list");
+  const filtered = getFilteredQuestions();
+  let lastTopic = null;
+  let html = "";
+  filtered.forEach((q, idx) => {
+    if (q.topic !== lastTopic && activeFilter === "all") {
+      html += `<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-label">${q.label.split("·")[0].trim()}</div><div class="section-divider-line"></div></div>`;
+      lastTopic = q.topic;
+    }
+    html += renderQuestionCard(q, idx);
+  });
+  list.innerHTML = html || `<div style="text-align:center;padding:3rem;color:var(--color-text-muted);font-size:var(--text-sm);">No hay preguntas en este filtro aún.</div>`;
+  filtered.forEach(q => {
+    q.opts.forEach((_, i) => {
+      const el = document.getElementById(`opt-${q.id}-${i}`);
+      if (el) el.addEventListener("click", () => selectOption(q.id, i));
+    });
+    const blankBtn = document.getElementById(`blank-${q.id}`);
+    if (blankBtn) blankBtn.addEventListener("click", () => markBlank(q.id));
+  });
+}
+
+function renderQuestionCard(q, globalIdx) {
+  const isAnswered = answers[q.id] !== undefined;
+  const isSubmitted = submitted[q.id];
+  const userAns = answers[q.id];
+
+  // In study mode, after answering allow re-answering (don't fully disable)
+  const isStudy = (currentMode === 'study');
+
+  let cardClass = "q-card";
+  if (isSubmitted) {
+    if (userAns === null) cardClass += " answered-blank";
+    else if (userAns === q.correct) cardClass += " answered-correct";
+    else cardClass += " answered-wrong";
+  }
+
+  const diffMap = {easy:"Básico", medium:"Intermedio", hard:"Avanzado"};
+  const diffClass = {easy:"diff-easy", medium:"diff-medium", hard:"diff-hard"};
+
+  let optsHtml = q.opts.map((opt, i) => {
+    let cls = "option";
+    if (isSubmitted) {
+      if (!isStudy) cls += " disabled";
+      if (i === q.correct) cls += " show-correct";
+      if (userAns === i && userAns !== q.correct) cls += " wrong";
+      if (userAns === i && userAns === q.correct) { cls = isStudy ? "option correct" : "option disabled correct"; }
+    } else if (userAns === i) {
+      cls += " selected";
+    }
+    return `<div class="${cls}" id="opt-${q.id}-${i}">
+      <span class="opt-letter">${String.fromCharCode(65+i)}</span>
+      <span class="opt-text">${opt}</span>
+    </div>`;
+  }).join("");
+
+  let feedbackHtml = "";
+  if (isSubmitted) {
+    const isCorrect = userAns === q.correct;
+    const fbClass = isCorrect ? "correct" : "wrong";
+    const label = isCorrect ? "✅ ¡Correcto!" : (userAns === null ? "📝 Dejada en blanco" : "❌ Incorrecto");
+    const studyHint = isStudy && !isCorrect ? '<br><em style="font-size:0.85em;opacity:0.8">Modo estudio: pulsa la opción correcta para continuar</em>' : '';
+    feedbackHtml = `<div class="q-feedback ${fbClass}"><span class="fb-label">${label}</span>${q.explanation}${studyHint}</div>`;
+  }
+
+  const formulaHtml = q.formula ? `<div class="q-formula">${q.formula}</div>` : "";
+  const blankBtnHtml = !isSubmitted ? `<button class="blank-btn" id="blank-${q.id}">⬜ Dejar en blanco</button>` : "";
+  // In study mode, show re-try button if answered wrong
+  const retryHtml = (isStudy && isSubmitted && userAns !== null && userAns !== q.correct)
+    ? `<button class="blank-btn" id="retry-${q.id}" style="border-color:var(--color-primary);color:var(--color-primary);margin-left:0.5rem;" onclick="retryStudy(${q.id})">🔄 Reintentar</button>`
+    : "";
+
+  return `<div class="${cardClass}" id="card-${q.id}" style="animation-delay:${Math.min(globalIdx*0.03,0.5)}s">
+    <div class="q-meta">
+      <span class="q-num">P${q.id}</span>
+      <span class="q-topic">${q.label}</span>
+      <span class="q-difficulty ${diffClass[q.diff]}">${diffMap[q.diff]}</span>
+      ${q.type === "calc" ? '<span class="q-difficulty" style="background:var(--color-primary-highlight);color:var(--color-primary)">🔢 Cálculo</span>' : ""}
+      ${currentMode === 'study' ? '<span style="font-size:var(--text-xs);background:var(--color-success-highlight);color:var(--color-success);padding:0.2rem 0.55rem;border-radius:var(--radius-full);font-weight:700;">📖 Estudio</span>' : ""}
+    </div>
+    <div class="q-text">${q.text}</div>
+    ${formulaHtml}
+    <div class="options">${optsHtml}</div>
+    ${blankBtnHtml}${retryHtml}
+    ${feedbackHtml}
+  </div>`;
+}
+
+function retryStudy(qId) {
+  if (currentMode !== 'study') return;
+  delete submitted[qId];
+  delete answers[qId];
+  const q = QUESTIONS.find(q => q.id === qId);
+  const cardEl = document.getElementById(`card-${qId}`);
+  if (cardEl) {
+    cardEl.outerHTML = renderQuestionCard(q, 0);
+    q.opts.forEach((_, i) => {
+      const el = document.getElementById(`opt-${qId}-${i}`);
+      if (el) el.addEventListener("click", () => selectOption(qId, i));
+    });
+    const blankBtn = document.getElementById(`blank-${qId}`);
+    if (blankBtn) blankBtn.addEventListener("click", () => markBlank(qId));
+  }
+  updateScore();
+  updateTopicDots();
+}
+
+function selectOption(qId, optIdx) {
+  if (submitted[qId] && currentMode !== 'study') return;
+  answers[qId] = optIdx;
+  submitted[qId] = true;
+  const q = QUESTIONS.find(q => q.id === qId);
+  const cardEl = document.getElementById(`card-${qId}`);
+  if (cardEl) {
+    cardEl.outerHTML = renderQuestionCard(q, 0);
+    q.opts.forEach((_, i) => {
+      const el = document.getElementById(`opt-${qId}-${i}`);
+      if (el) el.addEventListener("click", () => selectOption(qId, i));
+    });
+    const blankBtn = document.getElementById(`blank-${qId}`);
+    if (blankBtn) blankBtn.addEventListener("click", () => markBlank(qId));
+  }
+  updateScore();
+  updateTopicDots();
+}
+
+function markBlank(qId) {
+  if (submitted[qId] && currentMode !== 'study') return;
+  answers[qId] = null;
+  submitted[qId] = true;
+  const q = QUESTIONS.find(q => q.id === qId);
+  const cardEl = document.getElementById(`card-${qId}`);
+  if (cardEl) {
+    cardEl.outerHTML = renderQuestionCard(q, 0);
+    q.opts.forEach((_, i) => {
+      const el = document.getElementById(`opt-${qId}-${i}`);
+      if (el) el.addEventListener("click", () => selectOption(qId, i));
+    });
+    const blankBtn = document.getElementById(`blank-${qId}`);
+    if (blankBtn) blankBtn.addEventListener("click", () => markBlank(qId));
+  }
+  updateScore();
+  updateTopicDots();
+}
+
+function updateScore() {
+  const total = QUESTIONS.length;
+  const answeredCount = Object.keys(submitted).length;
+  const correctCount = QUESTIONS.filter(q => submitted[q.id] && answers[q.id] === q.correct).length;
+  const wrongCount = QUESTIONS.filter(q => submitted[q.id] && answers[q.id] !== null && answers[q.id] !== q.correct).length;
+  const blankCount = total - answeredCount;
+  document.getElementById("sc-correct").textContent = correctCount;
+  document.getElementById("sc-wrong").textContent = wrongCount;
+  document.getElementById("sc-blank").textContent = blankCount;
+  const rawScore = correctCount * 1 + wrongCount * (-0.25);
+  const nota = answeredCount > 0 ? (rawScore / total * 10).toFixed(2) : "—";
+  document.getElementById("sc-total").textContent = nota;
+  const pct = (answeredCount / total * 100).toFixed(1);
+  document.getElementById("progress-fill").style.width = pct + "%";
+  document.getElementById("progress-text").textContent = `${answeredCount} / ${total}`;
+}
+
+function updateTopicDots() {
+  const topics = [...new Set(QUESTIONS.map(q => q.topic))];
+  topics.forEach(t => {
+    const tQuestions = QUESTIONS.filter(q => q.topic === t);
+    const allDone = tQuestions.every(q => submitted[q.id]);
+    const anyActive = tQuestions.some(q => submitted[q.id]) && !allDone;
+    const dot = document.getElementById("dot-" + t);
+    if (!dot) return;
+    dot.className = "topic-dot";
+    if (allDone) dot.classList.add("done");
+    else if (anyActive) dot.classList.add("active");
+  });
+}
+
+function submitExam() {
+  QUESTIONS.forEach(q => {
+    if (!submitted[q.id]) {
+      submitted[q.id] = true;
+      answers[q.id] = null;
+    }
+  });
+  renderQuestions();
+  updateScore();
+  updateTopicDots();
+  showResults();
+}
+
+function showResults() {
+  const total = QUESTIONS.length;
+  const correctCount = QUESTIONS.filter(q => submitted[q.id] && answers[q.id] === q.correct).length;
+  const wrongCount = QUESTIONS.filter(q => submitted[q.id] && answers[q.id] !== null && answers[q.id] !== q.correct).length;
+  const blankCount = QUESTIONS.filter(q => !submitted[q.id] || answers[q.id] === null).length;
+  const rawScore = correctCount * 1 + wrongCount * (-0.25);
+  const nota10 = (rawScore / total * 10);
+
+  document.getElementById("res-correct").textContent = correctCount;
+  document.getElementById("res-wrong").textContent = wrongCount;
+  document.getElementById("res-blank").textContent = blankCount;
+  document.getElementById("res-grade").textContent = nota10.toFixed(2);
+
+  const gradeEl = document.getElementById("res-grade");
+  const msgEl = document.getElementById("res-msg");
+  gradeEl.className = "result-grade " + (nota10 >= 5 ? "pass" : "fail");
+
+  if (nota10 >= 8) msgEl.textContent = "🌟 Excelente — Estás muy bien preparado/a para el examen del 26 de mayo";
+  else if (nota10 >= 6) msgEl.textContent = "👍 Bien — Sigue repasando los temas fallados";
+  else if (nota10 >= 5) msgEl.textContent = "✅ Aprobado/a — Pero refuerza los temas más difíciles";
+  else msgEl.textContent = "📚 Necesitas repasar más — ¡Tú puedes! Queda tiempo hasta el 26 de mayo";
+
+  document.getElementById("results-panel").style.display = "block";
+  renderTopicBreakdown();
+  saveSession(nota10, correctCount, wrongCount, blankCount);
+  renderSessionHistory();
+  document.getElementById("results-panel").scrollIntoView({behavior:"smooth"});
+}
+
+function renderTopicBreakdown() {
+  const topics = [...new Set(QUESTIONS.map(q => q.topic))];
+  let html = '<h3>📊 Resultados por tema</h3>';
+  topics.forEach(t => {
+    const tQs = QUESTIONS.filter(q => q.topic === t);
+    const correct = tQs.filter(q => submitted[q.id] && answers[q.id] === q.correct).length;
+    const total = tQs.length;
+    const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+    const cls = pct >= 70 ? 'good' : pct >= 40 ? 'mid' : 'bad';
+    const alert = pct < 50 ? ' ⚠️' : pct === 100 ? ' ✅' : '';
+    html += `<div class="tb-row">
+      <span class="tb-label">${TOPIC_LABELS[t] || t}</span>
+      <div class="tb-track"><div class="tb-fill ${cls}" style="width:${pct}%"></div></div>
+      <span class="tb-score ${cls}">${correct}/${total}${alert}</span>
+    </div>`;
+  });
+  const el = document.getElementById('topic-breakdown');
+  if (el) el.innerHTML = html;
+}
+
+function saveSession(nota10, correct, wrong, blank) {
+  let history = JSON.parse(localStorage.getItem('ecoempresa_history') || '[]');
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('es-ES', {day:'2-digit', month:'2-digit'}) + ' ' + now.toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
+  history.unshift({ date: dateStr, grade: nota10.toFixed(2), correct, wrong, blank });
+  if (history.length > 10) history = history.slice(0, 10);
+  localStorage.setItem('ecoempresa_history', JSON.stringify(history));
+}
+
+function renderSessionHistory() {
+  const history = JSON.parse(localStorage.getItem('ecoempresa_history') || '[]');
+  const container = document.getElementById('history-list-container');
+  if (!container) return;
+  if (history.length === 0) {
+    container.innerHTML = '<div class="history-empty">Aún no hay sesiones guardadas. ¡Completa tu primer examen!</div>';
+    return;
+  }
+  let html = '<div class="history-list">';
+  history.forEach(function(s, i) {
+    const pass = parseFloat(s.grade) >= 5;
+    html += `<div class="history-item">
+      <span class="history-num">#${i+1}</span>
+      <span class="history-date">${s.date}</span>
+      <span class="history-detail">✅${s.correct} ❌${s.wrong} ⬜${s.blank}</span>
+      <span class="history-grade ${pass ? 'pass' : 'fail'}">${s.grade}</span>
+    </div>`;
+  });
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function clearHistory() {
+  if (confirm('¿Borrar todo el historial de sesiones?')) {
+    localStorage.removeItem('ecoempresa_history');
+    renderSessionHistory();
+    showToast('🗑 Historial borrado');
+  }
+}
+
+function resetExam() {
+  answers = {};
+  submitted = {};
+  activeFilter = "all";
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  const allBtn = document.querySelector('[data-filter="all"]');
+  if (allBtn) allBtn.classList.add("active");
+  document.getElementById("results-panel").style.display = "none";
+  const tbEl = document.getElementById('topic-breakdown');
+  if (tbEl) tbEl.innerHTML = '';
+  timerReset();
+  if (currentMode === 'flash') {
+    initFlashcards();
+  } else {
+    setMode('exam');
+    renderQuestions();
+    updateScore();
+    renderTopicDots();
+  }
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+// ===== FILTER =====
+document.querySelectorAll(".filter-btn").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    activeFilter = btn.dataset.filter;
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderQuestions();
+  });
+});
+
+// ===== THEME TOGGLE =====
+(function(){
+  const t = document.querySelector("[data-theme-toggle]");
+  const r = document.documentElement;
+  let d = r.getAttribute("data-theme") || "dark";
+  const sunSVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  const moonSVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  t.innerHTML = d === "dark" ? sunSVG : moonSVG;
+  t.addEventListener("click", function() {
+    d = d === "dark" ? "light" : "dark";
+    r.setAttribute("data-theme", d);
+    t.innerHTML = d === "dark" ? sunSVG : moonSVG;
+  });
+})();
+
+// ===== SCROLL TOP =====
+window.addEventListener("scroll", function() {
+  const el = document.getElementById("scroll-top");
+  if (el) el.classList.toggle("visible", window.scrollY > 400);
+});
+
+// ===== START =====
+init();
+</script>
+</body>
+</html>
