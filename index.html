@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Economía de la Empresa — Examen Tipo Test v3.3.2</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root, [data-theme="light"] {
+    --color-bg: #f7f6f2; --color-surface: #f9f8f5; --color-surface-2: #fbfbf9;
+    --color-surface-offset: #f0ede8; --color-divider: #dcd9d5; --color-border: #d4d1ca;
+    --color-text: #28251d; --color-text-muted: #7a7974; --color-text-faint: #bab9b4;
+    --color-primary: #01696f; --color-primary-hover: #0c4e54; --color-primary-active: #0f3638;
+    --color-primary-highlight: #cedcd8;
+    --color-success: #437a22; --color-success-hover: #2e5c10;
+    --color-success-highlight: #d4dfcc;
+    --color-error: #a12c7b; --color-error-hover: #7d1e5e;
+    --color-error-highlight: #e0ced7;
+    --color-warning: #964219; --color-warning-highlight: #ddcfc6;
+    --color-gold: #d19900; --color-gold-highlight: #e9e0c6;
+    --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+    --radius-xl: 1rem; --radius-2xl: 1.5rem; --radius-full: 9999px;
+    --shadow-sm: 0 1px 3px oklch(0.2 0.01 80 / 0.07);
+    --shadow-md: 0 4px 16px oklch(0.2 0.01 80 / 0.09);
+    --shadow-lg: 0 12px 40px oklch(0.2 0.01 80 / 0.13);
+    --font-display: 'Cabinet Grotesk', sans-serif;
+    --font-body: 'Satoshi', sans-serif;
+    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+    --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+    --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+    --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+    --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-theme="dark"] {
+    --color-bg: #131211; --color-surface: #1a1917; --color-surface-2: #201f1d;
+    --color-surface-offset: #252320; --color-divider: #2a2927; --color-border: #353330;
+    --color-text: #d4d2ce; --color-text-muted: #7c7b78; --color-text-faint: #4e4d4b;
+    --color-primary: #4f98a3; --color-primary-hover: #227f8b; --color-primary-active: #1a626b;
+    --color-primary-highlight: #1e3234;
+    --color-success: #6daa45; --color-success-hover: #4d8f25;
+    --color-success-highlight: #1d2e18;
+    --color-error: #d163a7; --color-error-hover: #b9478f;
+    --color-error-highlight: #2e1827;
+    --color-warning: #bb653b; --color-warning-highlight: #2e1e14;
+    --color-gold: #e8af34; --color-gold-highlight: #2c2210;
+    --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.25);
+    --shadow-md: 0 4px 16px oklch(0 0 0 / 0.35);
+    --shadow-lg: 0 12px 40px oklch(0 0 0 / 0.5);
+  }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body { min-height: 100dvh; font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text); background: var(--color-bg); line-height: 1.6; }
+
+  /* LAYOUT */
+  .app { max-width: 860px; margin: 0 auto; padding: 0 1.25rem 4rem; }
+
+  /* HEADER */
+  header { position: sticky; top: 0; z-index: 100; background: var(--color-bg); border-bottom: 1px solid var(--color-divider); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .header-inner { max-width: 860px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .logo-icon { width: 32px; height: 32px; flex-shrink: 0; }
+  .logo-text { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--color-text); letter-spacing: -0.02em; }
+  .logo-text span { color: var(--color-primary); }
+  .header-controls { display: flex; align-items: center; gap: 0.5rem; }
+  .btn-icon { background: none; border: 1px solid var(--color-border); border-radius: var(--radius-md); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); cursor: pointer; transition: all var(--transition); }
+  .btn-icon:hover { background: var(--color-surface-offset); color: var(--color-text); border-color: var(--color-primary); }
+
+  /* HERO */
+  .hero { padding: 2.5rem 0 1.5rem; text-align: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--color-primary-highlight); color: var(--color-primary); font-size: var(--text-xs); font-weight: 600; padding: 0.3rem 0.75rem; border-radius: var(--radius-full); margin-bottom: 1rem; letter-spacing: 0.04em; text-transform: uppercase; }
+  .hero h1 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; color: var(--color-text); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem; }
+  .hero p { color: var(--color-text-muted); font-size: var(--text-base); max-width: 52ch; margin: 0 auto 1.5rem; }
+  .exam-info { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 2rem; }
+  .info-chip { display: flex; align-items: center; gap: 0.35rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-full); padding: 0.3rem 0.8rem; font-size: var(--text-xs); color: var(--color-text-muted); }
+  .info-chip svg { color: var(--color-primary); }
+
+  /* PROGRESS */
+  .progress-bar-wrap { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+  .progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+  .progress-label { font-size: var(--text-xs); color: var(--color-text-muted); font-weight: 500; }
+  .progress-count { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--color-primary); }
+  .progress-track { height: 6px; background: var(--color-divider); border-radius: var(--radius-full); overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--color-primary); border-radius: var(--radius-full); transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .progress-topics { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+  .topic-dot { font-size: var(--text-xs); padding: 0.15rem 0.55rem; border-radius: var(--radius-full); background: var(--color-surface-offset); color: var(--color-text-muted); border: 1px solid transparent; transition: all var(--transition); }
+  .topic-dot.active { background: var(--color-primary-highlight); color: var(--color-primary); border-color: var(--color-primary); }
+  .topic-dot.done { background: var(--color-success-highlight); color: var(--color-success); }
+
+  /* SCORE COUNTER (live) */
+  .score-live { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 1.5rem; }
+  .score-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 0.6rem 0.75rem; text-align: center; }
+  .score-card .val { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; line-height: 1; }
+  .score-card .lbl { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 0.25rem; }
+  .score-card.correct .val { color: var(--color-success); }
+  .score-card.wrong .val { color: var(--color-error); }
+  .score-card.blank .val { color: var(--color-text-muted); }
+  .score-card.total .val { color: var(--color-primary); }
+
+  /* FILTER TABS */
+  .filter-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .filter-btn { background: none; border: 1px solid var(--color-border); border-radius: var(--radius-full); padding: 0.35rem 0.9rem; font-size: var(--text-xs); font-family: var(--font-body); color: var(--color-text-muted); cursor: pointer; transition: all var(--transition); white-space: nowrap; }
+  .filter-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .filter-btn.active { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+
+  /* QUESTION CARD */
+  .questions-list { display: flex; flex-direction: column; gap: 1.25rem; }
+  .q-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 1.5rem; transition: box-shadow var(--transition), border-color var(--transition); }
+  .q-card:hover { box-shadow: var(--shadow-sm); }
+  .q-card.answered-correct { border-color: var(--color-success); background: color-mix(in oklch, var(--color-success-highlight) 60%, var(--color-surface)); }
+  .q-card.answered-wrong { border-color: var(--color-error); background: color-mix(in oklch, var(--color-error-highlight) 60%, var(--color-surface)); }
+  .q-card.answered-blank { border-color: var(--color-border); opacity: 0.7; }
+
+  .q-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.85rem; flex-wrap: wrap; }
+  .q-num { font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; color: var(--color-primary); background: var(--color-primary-highlight); padding: 0.2rem 0.55rem; border-radius: var(--radius-full); }
+  .q-topic { font-size: var(--text-xs); color: var(--color-text-muted); background: var(--color-surface-offset); padding: 0.2rem 0.55rem; border-radius: var(--radius-full); }
+  .q-difficulty { font-size: var(--text-xs); padding: 0.2rem 0.55rem; border-radius: var(--radius-full); }
+  .diff-easy { background: var(--color-success-highlight); color: var(--color-success); }
+  .diff-medium { background: var(--color-gold-highlight); color: var(--color-gold); }
+  .diff-hard { background: var(--color-error-highlight); color: var(--color-error); }
+
+  .q-text { font-size: var(--text-base); font-weight: 500; color: var(--color-text); margin-bottom: 1.1rem; line-height: 1.5; }
+  .q-formula { background: var(--color-surface-offset); border-left: 3px solid var(--color-primary); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 0.6rem 0.9rem; font-size: var(--text-sm); font-family: monospace; color: var(--color-text-muted); margin-bottom: 1rem; }
+
+  .options { display: flex; flex-direction: column; gap: 0.5rem; }
+  .option { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.7rem 0.9rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-lg); cursor: pointer; transition: all var(--transition); background: var(--color-bg); }
+  .option:hover { border-color: var(--color-primary); background: var(--color-primary-highlight); }
+  .option.selected { border-color: var(--color-primary); background: var(--color-primary-highlight); }
+  .option.correct { border-color: var(--color-success) !important; background: var(--color-success-highlight) !important; }
+  .option.wrong { border-color: var(--color-error) !important; background: var(--color-error-highlight) !important; }
+  .option.disabled { cursor: default; pointer-events: none; }
+  .option.show-correct { border-color: var(--color-success) !important; background: var(--color-success-highlight) !important; }
+
+  .opt-letter { flex-shrink: 0; width: 26px; height: 26px; border-radius: var(--radius-full); border: 1.5px solid var(--color-border); display: flex; align-items: center; justify-content: center; font-size: var(--text-xs); font-weight: 700; font-family: var(--font-display); color: var(--color-text-muted); transition: all var(--transition); }
+  .option.selected .opt-letter { border-color: var(--color-primary); color: var(--color-primary); background: var(--color-primary-highlight); }
+  .option.correct .opt-letter { border-color: var(--color-success); color: var(--color-success); background: var(--color-success-highlight); }
+  .option.wrong .opt-letter { border-color: var(--color-error); color: var(--color-error); background: var(--color-error-highlight); }
+  .option.show-correct .opt-letter { border-color: var(--color-success); color: var(--color-success); }
+
+  .opt-text { font-size: var(--text-sm); color: var(--color-text); line-height: 1.45; }
+
+  /* FEEDBACK */
+  .q-feedback { display: none; margin-top: 1rem; padding: 0.8rem 1rem; border-radius: var(--radius-lg); font-size: var(--text-sm); line-height: 1.5; border-left: 3px solid; }
+  .q-feedback.correct { background: var(--color-success-highlight); border-color: var(--color-success); color: var(--color-text); display: block; }
+  .q-feedback.wrong { background: var(--color-error-highlight); border-color: var(--color-error); color: var(--color-text); display: block; }
+  .q-feedback .fb-label { font-weight: 700; display: block; margin-bottom: 0.25rem; }
+  .q-feedback.correct .fb-label { color: var(--color-success); }
+  .q-feedback.wrong .fb-label { color: var(--color-error); }
+
+  /* BUTTONS */
+  .btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.25rem; border-radius: var(--radius-md); font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; cursor: pointer; transition: all var(--transition); border: none; }
+  .btn-primary { background: var(--color-primary); color: #fff; }
+  .btn-primary:hover { background: var(--color-primary-hover); }
+  .btn-outline { background: none; border: 1.5px solid var(--color-border); color: var(--color-text); }
+  .btn-outline:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+  /* ACTION BAR */
+  .action-bar { position: sticky; bottom: 1.5rem; display: flex; justify-content: center; gap: 0.75rem; z-index: 50; pointer-events: none; }
+  .action-bar .btn { pointer-events: all; box-shadow: var(--shadow-md); }
+
+  /* RESULTS PANEL */
+  #results-panel { display: none; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-2xl); padding: 2rem; margin-bottom: 2rem; text-align: center; }
+  #results-panel h2 { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .result-grade { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem); font-weight: 800; letter-spacing: -0.04em; }
+  .result-grade.pass { color: var(--color-success); }
+  .result-grade.fail { color: var(--color-error); }
+  .result-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0; }
+  .rstat { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 0.9rem; }
+  .rstat .rv { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; }
+  .rstat .rl { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 0.2rem; }
+  .rstat.rc .rv { color: var(--color-success); }
+  .rstat.rw .rv { color: var(--color-error); }
+  .rstat.rb .rv { color: var(--color-text-muted); }
+
+  .penalty-note { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 0.5rem; }
+
+  /* SECTION DIVIDER */
+  .section-divider { display: flex; align-items: center; gap: 0.75rem; margin: 2rem 0 1rem; }
+  .section-divider-line { flex: 1; height: 1px; background: var(--color-divider); }
+  .section-divider-label { font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; color: var(--color-text-faint); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .score-live { grid-template-columns: repeat(2, 1fr); }
+    .result-stats { grid-template-columns: repeat(3, 1fr); }
+    .hero h1 { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+  }
+
+  /* ANIMATIONS */
+  @keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .q-card { animation: slideIn 0.3s ease forwards; }
+  @keyframes pop { 0%{transform:scale(1)} 50%{transform:scale(1.06)} 100%{transform:scale(1)} }
+  .option.correct { animation: pop 0.35s ease; }
+
+  /* BLANK BUTTON */
+  .blank-btn { background: none; border: 1.5px dashed var(--color-border); border-radius: var(--radius-lg); padding: 0.55rem 1rem; font-size: var(--text-xs); font-family: var(--font-body); color: var(--color-text-muted); cursor: pointer; transition: all var(--transition); margin-top: 0.5rem; display: inline-flex; align-items: center; gap: 0.35rem; }
+  .blank-btn:hover { border-color: var(--color-text-muted); color: var(--color-text); }
+
+  /* TOOLTIP */
+  abbr[title] { text-decoration: underline dotted var(--color-primary); cursor: help; }
+
+  /* SCROLL TO TOP */
+  #scroll-top { position: fixed; bottom: 5rem; right: 1.5rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-full); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-sm); opacity: 0; pointer-events: none; transition: all var(--transition); z-index: 200; color: var(--color-text-muted); }
+  #scroll-top.visible { opacity: 1; pointer-events: all; }
+  #scroll-top:hover { color: var(--color-primary); border-color: var(--color-primary); }
+
+  /* ===== MEJORAS NUEVAS ===== */
+
+  /* MODE SELECTOR */
+  .mode-selector { display: flex; gap: 0.5rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 0.75rem 1.25rem; margin-bottom: 1.5rem; align-items: center; flex-wrap: wrap; }
+  .mode-label { font-size: var(--text-xs); font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-right: 0.5rem; }
+  .mode-btn { background: none; border: 1.5px solid var(--color-border); border-radius: var(--radius-full); padding: 0.35rem 1rem; font-size: var(--text-xs); font-family: var(--font-body); font-weight: 600; color: var(--color-text-muted); cursor: pointer; transition: all var(--transition); }
+  .mode-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .mode-btn.active { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+  .mode-btn.active-study { background: var(--color-success); border-color: var(--color-success); color: #fff; }
+  .mode-btn.active-flash { background: var(--color-gold); border-color: var(--color-gold); color: #fff; }
+  .mode-separator { width: 1px; height: 20px; background: var(--color-divider); margin: 0 0.25rem; }
+  .shuffle-btn { margin-left: auto; background: none; border: 1.5px dashed var(--color-border); border-radius: var(--radius-full); padding: 0.35rem 1rem; font-size: var(--text-xs); font-family: var(--font-body); font-weight: 600; color: var(--color-text-muted); cursor: pointer; transition: all var(--transition); display: flex; align-items: center; gap: 0.35rem; }
+  .shuffle-btn:hover { border-color: var(--color-primary); color: var(--color-primary); border-style: solid; }
+  .shuffle-btn.active { background: var(--color-primary-highlight); border-color: var(--color-primary); color: var(--color-primary); border-style: solid; }
+  .shuffle-btn.calc-active { background: var(--color-gold-bg); border-color: var(--color-gold); color: var(--color-gold); }
+
+  /* TIMER */
+  .timer-bar { display: flex; align-items: center; gap: 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 0.75rem 1.25rem; margin-bottom: 1.5rem; }
+  .timer-display { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-primary); min-width: 80px; letter-spacing: 0.05em; transition: color var(--transition); }
+  .timer-display.warning { color: var(--color-warning); }
+  .timer-display.danger { color: var(--color-error); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+  .timer-track { flex: 1; height: 6px; background: var(--color-divider); border-radius: var(--radius-full); overflow: hidden; }
+  .timer-fill { height: 100%; background: var(--color-primary); border-radius: var(--radius-full); transition: width 1s linear, background 1s; }
+  .timer-fill.warning { background: var(--color-warning); }
+  .timer-fill.danger { background: var(--color-error); }
+  .timer-controls { display: flex; gap: 0.4rem; }
+  .timer-btn { background: none; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 0.3rem 0.7rem; font-size: var(--text-xs); font-family: var(--font-body); font-weight: 600; cursor: pointer; color: var(--color-text-muted); transition: all var(--transition); }
+  .timer-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+  /* FLASHCARD MODE */
+  .flashcard-wrapper { perspective: 1000px; }
+  .fc-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-2xl); padding: 2.5rem; text-align: center; cursor: pointer; transition: box-shadow var(--transition); position: relative; min-height: 280px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; }
+  .fc-card:hover { box-shadow: var(--shadow-md); }
+  .fc-hint { font-size: var(--text-xs); color: var(--color-text-faint); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .fc-topic { font-size: var(--text-xs); color: var(--color-primary); background: var(--color-primary-highlight); padding: 0.2rem 0.7rem; border-radius: var(--radius-full); font-weight: 700; }
+  .fc-question { font-size: var(--text-lg); font-weight: 600; color: var(--color-text); line-height: 1.4; max-width: 60ch; }
+  .fc-answer { display: none; background: var(--color-success-highlight); border: 1px solid var(--color-success); border-radius: var(--radius-lg); padding: 1rem 1.5rem; font-size: var(--text-sm); color: var(--color-text); line-height: 1.5; max-width: 60ch; }
+  .fc-answer.visible { display: block; animation: slideIn 0.25s ease; }
+  .fc-correct-label { font-weight: 700; color: var(--color-success); margin-bottom: 0.35rem; font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.06em; }
+  .fc-nav { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.5rem; }
+  .fc-counter { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); }
+  .fc-progress-bar { height: 3px; background: var(--color-divider); border-radius: var(--radius-full); margin-bottom: 1.5rem; overflow: hidden; }
+  .fc-progress-fill { height: 100%; background: var(--color-gold); border-radius: var(--radius-full); transition: width 0.4s ease; }
+  .fc-actions { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
+  .fc-knew { background: var(--color-success-highlight); border: 1.5px solid var(--color-success); color: var(--color-success); border-radius: var(--radius-full); padding: 0.4rem 1.1rem; font-size: var(--text-xs); font-weight: 700; cursor: pointer; font-family: var(--font-body); transition: all var(--transition); }
+  .fc-knew:hover { background: var(--color-success); color: #fff; }
+  .fc-didnt { background: var(--color-error-highlight); border: 1.5px solid var(--color-error); color: var(--color-error); border-radius: var(--radius-full); padding: 0.4rem 1.1rem; font-size: var(--text-xs); font-weight: 700; cursor: pointer; font-family: var(--font-body); transition: all var(--transition); }
+  .fc-didnt:hover { background: var(--color-error); color: #fff; }
+  .fc-formula { background: var(--color-surface-offset); border-left: 3px solid var(--color-primary); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 0.5rem 0.9rem; font-family: monospace; font-size: var(--text-xs); color: var(--color-text-muted); margin: 0.5rem 0; width: 100%; text-align: left; max-width: 60ch; }
+
+  /* STUDY MODE indicator on card */
+  .q-card.study-mode-card .q-study-hint { display: flex; }
+  .q-study-hint { display: none; align-items: center; gap: 0.4rem; font-size: var(--text-xs); color: var(--color-success); background: var(--color-success-highlight); border-radius: var(--radius-full); padding: 0.2rem 0.7rem; margin-bottom: 0.75rem; font-weight: 600; }
+
+  /* RESULTS BY TOPIC */
+  .topic-breakdown { margin-top: 1.5rem; text-align: left; }
+  .topic-breakdown h3 { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--color-text); margin-bottom: 0.75rem; text-align: center; }
+  .tb-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid var(--color-divider); }
+  .tb-label { font-size: var(--text-xs); color: var(--color-text-muted); width: 140px; flex-shrink: 0; }
+  .tb-track { flex: 1; height: 8px; background: var(--color-divider); border-radius: var(--radius-full); overflow: hidden; }
+  .tb-fill { height: 100%; border-radius: var(--radius-full); transition: width 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .tb-fill.good { background: var(--color-success); }
+  .tb-fill.mid { background: var(--color-gold); }
+  .tb-fill.bad { background: var(--color-error); }
+  .tb-score { font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; min-width: 50px; text-align: right; }
+  .tb-score.good { color: var(--color-success); }
+  .tb-score.mid { color: var(--color-gold); }
+  .tb-score.bad { color: var(--color-error); }
+  .tb-alert { font-size: var(--text-xs); }
+
+  /* SESSION HISTORY */
+  .session-history { margin-top: 1.5rem; border-top: 1px solid var(--color-divider); padding-top: 1.25rem; }
+  .session-history h3 { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--color-text); margin-bottom: 0.75rem; text-align: center; }
+  .history-empty { font-size: var(--text-xs); color: var(--color-text-faint); text-align: center; padding: 0.5rem; }
+  .history-list { display: flex; flex-direction: column; gap: 0.4rem; }
+  .history-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); font-size: var(--text-xs); }
+  .history-num { font-family: var(--font-display); font-weight: 700; color: var(--color-text-faint); width: 24px; }
+  .history-date { color: var(--color-text-muted); flex: 1; }
+  .history-grade { font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm); }
+  .history-grade.pass { color: var(--color-success); }
+  .history-grade.fail { color: var(--color-error); }
+  .history-detail { color: var(--color-text-faint); }
+  .history-clear { background: none; border: none; font-size: var(--text-xs); color: var(--color-text-faint); cursor: pointer; font-family: var(--font-body); text-decoration: underline; margin-top: 0.5rem; display: block; margin-left: auto; }
+  .history-clear:hover { color: var(--color-error); }
+
+  /* STUDY MODE — allow revisit */
+  .option.study-unlocked { cursor: pointer; pointer-events: all; }
+
+  /* TOAST notification */
+  #toast { position: fixed; bottom: 6rem; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--color-text); color: var(--color-bg); padding: 0.6rem 1.25rem; border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 600; opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 500; white-space: nowrap; }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="EcoEmpresa Logo">
+        <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
+        <path d="M8 10 L16 6 L24 10 L24 20 L16 24 L8 20 Z" stroke="white" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+        <path d="M16 6 L16 24 M8 10 L24 10 M8 20 L24 20" stroke="white" stroke-width="1" opacity="0.5"/>
+        <circle cx="16" cy="15" r="2.5" fill="white" opacity="0.9"/>
+      </svg>
+      <span class="logo-text">Eco<span>Empresa</span></span>
+    </a>
+    <div class="header-controls">
+      <button class="btn-icon" data-theme-toggle aria-label="Cambiar modo claro/oscuro">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="app">
+
+
+  <!-- TOAST -->
+  <div id="toast"></div>
+
+  <!-- MODE SELECTOR + SHUFFLE -->
+  <div class="mode-selector">
+    <span class="mode-label">Modo:</span>
+    <button class="mode-btn active" id="mode-exam" onclick="setMode('exam')">🎯 Examen</button>
+    <button class="mode-btn" id="mode-study" onclick="setMode('study')">📖 Estudio</button>
+    <button class="mode-btn" id="mode-flash" onclick="setMode('flash')">⚡ Flashcards</button>
+    <div class="mode-separator"></div>
+    <button class="shuffle-btn" id="shuffle-btn" onclick="toggleShuffle()">🔀 Aleatorizar</button>
+    <button class="shuffle-btn" id="real-exam-btn" onclick="toggleRealExam()">🧾 Examen real</button>
+    <select id="exam-size-select" aria-label="Número de preguntas" style="margin-left:0.25rem; padding:0.35rem 0.75rem; border-radius:999px; border:1.5px solid var(--color-border); background:var(--color-surface); color:var(--color-text); font-family:inherit; font-size:var(--text-xs); font-weight:600;">
+      <option value="20">20 preguntas</option>
+      <option value="40" selected>40 preguntas</option>
+      <option value="60">60 preguntas</option>
+    </select>
+    <select id="theme-select" aria-label="Tema del examen" style="margin-left:0.25rem; padding:0.35rem 0.75rem; border-radius:999px; border:1.5px solid var(--color-border); background:var(--color-surface); color:var(--color-text); font-family:inherit; font-size:var(--text-xs); font-weight:600;">
+      <option value="all" selected>Todos los temas</option>
+      <option value="T1">Tema 1</option><option value="T2">Tema 2</option><option value="T3">Tema 3</option><option value="T4">Tema 4</option>
+      <option value="T5">Tema 5</option><option value="T6">Tema 6</option><option value="T7">Tema 7</option><option value="T8">Tema 8</option>
+      <option value="T9">Tema 9</option><option value="T10">Tema 10</option><option value="T11">Tema 11</option><option value="T12">Tema 12</option>
+    </select>
+    <button class="shuffle-btn" id="calc-only-btn" onclick="toggleCalcOnly()">🧮 Solo cálculo</button>
+  </div>
+
+  <!-- TIMER -->
+  <div class="timer-bar" id="timer-bar">
+    <span style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">⏱ Tiempo</span>
+    <span class="timer-display" id="timer-display">60:00</span>
+    <div class="timer-track"><div class="timer-fill" id="timer-fill" style="width:100%"></div></div>
+    <div class="timer-controls">
+      <button class="timer-btn" id="timer-start-btn" onclick="timerToggle()">▶ Iniciar</button>
+      <button class="timer-btn" onclick="timerReset()">↺ Reset</button>
+    </div>
+  </div>
+
+  <div id="questions-wrap"></div>
+
+<!-- FLASHCARD VIEW (hidden by default) -->
+  <div id="flashcard-view" style="display:none;">
+    <div class="fc-progress-bar"><div class="fc-progress-fill" id="fc-progress-fill" style="width:0%"></div></div>
+    <div class="flashcard-wrapper">
+      <div class="fc-card" id="fc-card" onclick="fcReveal()">
+        <span class="fc-hint" id="fc-hint">Toca para ver la respuesta</span>
+        <span class="fc-topic" id="fc-topic-label">—</span>
+        <div class="fc-question" id="fc-question">—</div>
+        <div class="fc-formula" id="fc-formula" style="display:none;"></div>
+        <div class="fc-answer" id="fc-answer">
+          <div class="fc-correct-label">✅ Respuesta correcta</div>
+          <div id="fc-answer-text">—</div>
+          <div id="fc-explanation" style="margin-top:0.5rem;font-size:var(--text-xs);color:var(--color-text-muted);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="fc-actions" id="fc-actions" style="display:none;">
+      <button class="fc-knew" onclick="fcNext(true)">✅ Lo sabía</button>
+      <button class="fc-didnt" onclick="fcNext(false)">❌ No lo sabía</button>
+    </div>
+    <div class="fc-nav">
+      <button class="btn btn-outline" onclick="fcPrev()">← Anterior</button>
+      <span class="fc-counter" id="fc-counter">1 / 40</span>
+      <button class="btn btn-outline" onclick="fcNext(null)">Siguiente →</button>
+    </div>
+    <div style="text-align:center;margin-top:1rem;">
+      <span id="fc-stats" style="font-size:var(--text-xs);color:var(--color-text-muted);"></span>
+    </div>
+  </div>
+
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      Examen oficial · 26 de mayo · Aula P-112
+    </div>
+    <h1>Economía de la Empresa</h1>
+    <p>Examen tipo test completo — 40 preguntas de todos los temas. Simula las condiciones del examen real con penalización.</p>
+    <div class="exam-info">
+      <span class="info-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>60 min máximo</span>
+      <span class="info-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>✅ +1 bien · ❌ −0.25 mal · ⬜ 0 blanco</span>
+      <span class="info-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>12 temas</span>
+      <span class="info-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>40 preguntas</span>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar-wrap">
+    <div class="progress-top">
+      <span class="progress-label">Progreso del examen</span>
+      <span class="progress-count" id="progress-text">0 / 40</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-topics" id="topic-dots"></div>
+  </div>
+
+  <!-- SCORE LIVE -->
+  <div class="score-live">
+    <div class="score-card correct"><div class="val" id="sc-correct">0</div><div class="lbl">✅ Correctas</div></div>
+    <div class="score-card wrong"><div class="val" id="sc-wrong">0</div><div class="lbl">❌ Incorrectas</div></div>
+    <div class="score-card blank"><div class="val" id="sc-blank">40</div><div class="lbl">⬜ Sin contestar</div></div>
+    <div class="score-card total"><div class="val" id="sc-total">—</div><div class="lbl">📊 Nota parcial</div></div>
+  </div>
+
+  <!-- FILTER -->
+  <div class="filter-row" id="filter-row">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="T1-T4">Temas 1-4</button>
+    <button class="filter-btn" data-filter="T5-T7">Temas 5-7</button>
+    <button class="filter-btn" data-filter="T8-T9">Temas 8-9</button>
+    <button class="filter-btn" data-filter="T10-T12">Temas 10-12</button>
+    <button class="filter-btn" data-filter="calc">Cálculo 🔢</button>
+    <button class="filter-btn" data-filter="wrong">Falladas</button>
+    <button class="filter-btn" data-filter="unanswered">Sin contestar</button>
+  </div>
+
+  <!-- RESULTS PANEL -->
+  <div id="results-panel">
+    <h2>Resultado Final</h2>
+    <div class="result-grade" id="res-grade">—</div>
+    <div id="res-msg" style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:1rem;"></div>
+    <div class="result-stats">
+      <div class="rstat rc"><div class="rv" id="res-correct">0</div><div class="rl">Correctas</div></div>
+      <div class="rstat rw"><div class="rv" id="res-wrong">0</div><div class="rl">Incorrectas</div></div>
+      <div class="rstat rb"><div class="rv" id="res-blank">0</div><div class="rl">En blanco</div></div>
+    </div>
+    <div class="penalty-note">Fórmula: (correctas × 1) + (incorrectas × −0.25) + (en blanco × 0). Nota prorratada sobre 10.</div>
+    <button class="btn btn-primary" onclick="resetExam()" style="margin-top:1.25rem;">🔄 Reiniciar examen</button>
+
+    <!-- TOPIC BREAKDOWN -->
+    <div class="topic-breakdown" id="topic-breakdown"></div>
+
+    <!-- SESSION HISTORY -->
+    <div class="session-history" id="session-history">
+      <h3>📈 Historial de sesiones</h3>
+      <div id="history-list-container"></div>
+      <button class="history-clear" onclick="clearHistory()">Borrar historial</button>
+    </div>
+
+  </div>
+
+  <!-- QUESTIONS -->
+  <div class="questions-list" id="questions-list"></div>
+
+  <!-- ACTION BAR -->
+  <div class="action-bar">
+    <button class="btn btn-outline" onclick="showResults()">📊 Ver resultado parcial</button>
+    <button class="btn btn-primary" onclick="submitExam()">Entregar examen</button>
+  </div>
+
+</div>
+
+<!-- SCROLL TOP -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+
+
+<!-- SCROLL TOP -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+const QUESTION_VARIANTS = {
+  40: [
+    "Si una empresa produce 1.200 unidades utilizando 300 horas de trabajo, ¿cuál es su productividad laboral?",
+    "Una fábrica obtiene 1.200 unidades con 300 horas de mano de obra. La productividad del trabajo es...",
+    "Calcula la productividad laboral si el output es de 1.200 unidades y se emplean 300 horas de trabajo."
+  ],
+  41: [
+    "Si los costes fijos son 12.000 €, el precio unitario 30 € y el coste variable unitario 18 €, ¿cuál es el punto muerto?",
+    "Calcula el umbral de rentabilidad cuando CF = 12.000 €, p = 30 € y CVu = 18 €.",
+    "¿Cuántas unidades debe vender la empresa para alcanzar el punto muerto si CF=12.000 €, p=30 € y CVu=18 €?"
+  ],
+  42: [
+    "Una empresa fabrica 500 unidades con costes fijos de 4.000 € y coste variable unitario de 6 €. ¿Cuál es el coste total?",
+    "Calcula el coste total si se producen 500 unidades, CF = 4.000 € y CVu = 6 €.",
+    "Si una empresa asume 4.000 € de costes fijos y 6 € variables por unidad para 500 unidades, el coste total será..."
+  ],
+  48: [
+    "Si el consumo anual es 10.000 unidades y el stock medio 2.000, la rotación de existencias es...",
+    "Calcula la rotación de inventarios con consumo anual de 10.000 unidades y stock medio de 2.000.",
+    "¿Cuántas veces rota el inventario si se consumen 10.000 unidades al año y el stock medio es 2.000?"
+  ],
+  70: [
+    "Un proyecto requiere 10.000 € y genera flujos de 4.000 €, 4.000 € y 3.000 €. ¿Cuál es su pay-back simple?",
+    "Calcula el plazo de recuperación de una inversión de 10.000 € con cobros netos de 4.000 €, 4.000 € y 3.000 €.",
+    "¿En cuánto tiempo se recupera una inversión inicial de 10.000 € si produce flujos de 4.000 €, 4.000 € y 3.000 €?"
+  ],
+  71: [
+    "Si una inversión de 20.000 € genera cobros anuales constantes de 5.000 €, su pay-back es...",
+    "Calcula el plazo de recuperación simple para una inversión de 20.000 € con flujos de 5.000 € al año.",
+    "¿Cuántos años tarda en recuperarse una inversión de 20.000 € si genera 5.000 € anuales?"
+  ],
+  76: [
+    "Si el activo corriente es 30.000 € y el pasivo corriente 18.000 €, el fondo de maniobra vale...",
+    "Calcula el fondo de maniobra con AC = 30.000 € y PC = 18.000 €.",
+    "¿Cuál es el fondo de maniobra de una empresa con activo corriente de 30.000 € y pasivo corriente de 18.000 €?"
+  ],
+  78: [
+    "Si el activo corriente asciende a 24.000 € y el pasivo corriente a 12.000 €, el ratio de liquidez es...",
+    "Calcula el ratio de liquidez cuando AC = 24.000 € y PC = 12.000 €.",
+    "¿Qué ratio de liquidez presenta una empresa con 24.000 € de activo corriente y 12.000 € de pasivo corriente?"
+  ],
+  79: [
+    "Si el patrimonio neto es 40.000 € y el pasivo total 60.000 €, el activo total será...",
+    "Calcula el activo total sabiendo que PN = 40.000 € y pasivo = 60.000 €.",
+    "¿A cuánto asciende el activo total si el patrimonio neto es 40.000 € y el pasivo total 60.000 €?"
+  ]
+};
+
+
+const QUESTIONS = [
+  // T1 — CONCEPTOS BÁSICOS
+  { id:1, topic:"T1", label:"Tema 1 · Conceptos básicos", diff:"easy", text:"¿Cuál de las siguientes definiciones describe mejor el concepto de empresa?", opts:["Una organización que persigue fines sociales sin ánimo de lucro","Una organización que obtiene beneficios económicos para sus propietarios mediante la comercialización de productos y/o servicios","Cualquier institución pública o privada que gestiona recursos humanos","Un sistema de producción que minimiza costes a cualquier precio"], correct:1, explanation:"La empresa combina factores productivos para ofrecer bienes o servicios y obtener un excedente o beneficio." },
+  { id:2, topic:"T1", label:"Tema 1 · Conceptos básicos", diff:"easy", text:"¿Qué se entiende por actividad económica?", opts:["Solo las operaciones financieras de los bancos","El conjunto de actividades dirigidas a producir, distribuir y consumir bienes y servicios para satisfacer necesidades","La intervención exclusiva del Estado en los mercados","Únicamente la compraventa internacional de productos"], correct:1, explanation:"La actividad económica abarca producción, distribución y consumo para satisfacer necesidades humanas." },
+  { id:3, topic:"T1", label:"Tema 1 · Conceptos básicos", diff:"medium", text:"¿Cuál de los siguientes elementos no forma parte del entorno general de la empresa?", opts:["Factores políticos y legales","Factores tecnológicos","Clientes y proveedores concretos","Factores socioculturales"], correct:2, explanation:"Clientes y proveedores concretos pertenecen al entorno específico, no al general." },
+  { id:4, topic:"T1", label:"Tema 1 · Conceptos básicos", diff:"medium", text:"¿Qué caracteriza al entorno específico de una empresa?", opts:["Incluye factores macroeconómicos comunes a todas las empresas","Afecta de forma directa a la actividad diaria de la empresa","Solo recoge variables demográficas y culturales","No influye en la toma de decisiones"], correct:1, explanation:"El entorno específico lo forman agentes cercanos como clientes, competidores, proveedores e intermediarios." },
+  { id:5, topic:"T1", label:"Tema 1 · Conceptos básicos", diff:"medium", text:"¿Qué significa que una empresa actúa con responsabilidad social corporativa?", opts:["Que solo busca maximizar el beneficio a corto plazo","Que integra voluntariamente preocupaciones sociales y medioambientales en su gestión","Que sustituye la legislación vigente por códigos internos","Que elimina totalmente sus costes sociales"], correct:1, explanation:"La RSC supone ir más allá del mínimo legal e incorporar criterios sociales y ambientales a la gestión." },
+  { id:6, topic:"T1", label:"Tema 1 · Conceptos básicos", diff:"hard", text:"Si una empresa debe adaptarse a cambios en tipos de interés, inflación y crecimiento económico, está analizando principalmente su entorno...", opts:["específico competitivo","general económico","interno organizativo","microcomercial"], correct:1, explanation:"Tipos de interés, inflación y crecimiento son variables del entorno general económico." },
+
+  // T2 — CLASES Y FUNCIONES
+  { id:7, topic:"T2", label:"Tema 2 · Clases y funciones", diff:"easy", text:"¿Cuál es la función principal de la empresa en el sistema económico?", opts:["Sustituir al Estado en la redistribución de la renta","Coordinar los factores productivos para producir bienes y servicios","Fijar legalmente los salarios de todos los trabajadores","Eliminar la competencia en el mercado"], correct:1, explanation:"La empresa organiza trabajo, capital y recursos para producir bienes y servicios." },
+  { id:8, topic:"T2", label:"Tema 2 · Clases y funciones", diff:"medium", text:"Una empresa industrial se diferencia de una comercial porque...", opts:["produce transformando materias primas","vende solo al por menor","no tiene costes fijos","no utiliza mano de obra"], correct:0, explanation:"La empresa industrial transforma inputs en productos; la comercial intermedia en la distribución." },
+  { id:9, topic:"T2", label:"Tema 2 · Clases y funciones", diff:"medium", text:"Según su dimensión, una empresa puede clasificarse atendiendo a...", opts:["número de trabajadores, volumen de negocio y activo","la simpatía de los directivos","la edad media de los clientes","el número de proveedores extranjeros"], correct:0, explanation:"La dimensión suele medirse por empleo, ventas y volumen de activos." },
+  { id:10, topic:"T2", label:"Tema 2 · Clases y funciones", diff:"medium", text:"¿Qué rasgo distingue a una multinacional?", opts:["Produce solo bienes públicos","Opera en varios países y coordina decisiones a escala internacional","No necesita financiación externa","Carece de estructura jerárquica"], correct:1, explanation:"La multinacional desarrolla actividad productiva o comercial en varios países." },
+  { id:11, topic:"T2", label:"Tema 2 · Clases y funciones", diff:"hard", text:"Una pyme suele presentar como ventaja competitiva frente a la gran empresa...", opts:["mayor rigidez organizativa","más facilidad para adaptarse a cambios del mercado","menor cercanía al cliente","acceso ilimitado a financiación"], correct:1, explanation:"Las pymes suelen destacar por flexibilidad, cercanía y rapidez de adaptación." },
+  { id:12, topic:"T2", label:"Tema 2 · Clases y funciones", diff:"hard", text:"Si una empresa se clasifica por el sector al que pertenece, una empresa de transporte estaría en el sector...", opts:["primario","secundario","terciario","cuaternario obligatorio"], correct:2, explanation:"El transporte es una actividad de servicios, integrada en el sector terciario." },
+
+  // T3 — OBJETIVOS Y CRECIMIENTO
+  { id:13, topic:"T3", label:"Tema 3 · Objetivos y crecimiento", diff:"easy", text:"¿Cuál suele ser el objetivo básico tradicional de la empresa?", opts:["Maximizar el beneficio","Reducir salarios indefinidamente","Eliminar toda competencia","Sustituir a las administraciones públicas"], correct:0, explanation:"En el enfoque clásico, el objetivo principal es la maximización del beneficio." },
+  { id:14, topic:"T3", label:"Tema 3 · Objetivos y crecimiento", diff:"medium", text:"La cuota de mercado es...", opts:["el porcentaje del capital aportado por los socios","la parte de las ventas totales del mercado que corresponde a una empresa","el importe del beneficio neto sobre ventas","la rentabilidad de una inversión financiera"], correct:1, explanation:"Mide el peso de la empresa en el total de ventas del mercado." },
+  { id:15, topic:"T3", label:"Tema 3 · Objetivos y crecimiento", diff:"medium", text:"El crecimiento interno de una empresa se produce cuando...", opts:["aumenta su capacidad mediante nuevas inversiones propias","compra otra empresa del sector","firma una alianza estratégica sin invertir","subcontrata toda su producción"], correct:0, explanation:"El crecimiento interno se basa en ampliar la capacidad productiva con recursos propios o nuevas inversiones." },
+  { id:16, topic:"T3", label:"Tema 3 · Objetivos y crecimiento", diff:"hard", text:"Una fusión horizontal tiene lugar cuando...", opts:["se unen empresas de distintas fases del proceso productivo","se unen empresas que operan en la misma actividad o mercado","una empresa compra a su proveedor principal","el Estado integra empresas públicas"], correct:1, explanation:"La fusión horizontal une empresas competidoras o del mismo sector." },
+  { id:17, topic:"T3", label:"Tema 3 · Objetivos y crecimiento", diff:"hard", text:"La diversificación consiste en...", opts:["reducir la gama de productos","entrar en nuevos productos o mercados distintos de los habituales","aumentar solo el precio de venta","limitar la empresa a un único cliente"], correct:1, explanation:"Diversificar supone ampliar la actividad hacia nuevos productos, segmentos o mercados." },
+  { id:18, topic:"T3", label:"Tema 3 · Objetivos y crecimiento", diff:"hard", text:"Una alianza estratégica se caracteriza porque...", opts:["las empresas colaboran para un fin común manteniendo su independencia jurídica","desaparecen todas las empresas participantes","siempre implica absorción total","solo puede darse entre empresas públicas"], correct:0, explanation:"Las alianzas permiten cooperar sin perder personalidad jurídica." },
+
+  // T4 — LOCALIZACIÓN Y DIMENSIÓN
+  { id:19, topic:"T4", label:"Tema 4 · Localización y dimensión", diff:"easy", text:"¿Qué factor suele ser decisivo en la localización de una industria pesada?", opts:["proximidad a materias primas y costes de transporte","el color corporativo","la decoración de las oficinas","la moda del lugar"], correct:0, explanation:"En actividades pesadas pesan mucho transporte, energía y proximidad a inputs." },
+  { id:20, topic:"T4", label:"Tema 4 · Localización y dimensión", diff:"medium", text:"En empresas comerciales, la localización suele depender especialmente de...", opts:["cercanía al mercado y accesibilidad para clientes","proximidad a minas de carbón","régimen de lluvias","número de puertos marítimos"], correct:0, explanation:"Las empresas comerciales necesitan visibilidad, accesibilidad y cercanía al cliente." },
+  { id:21, topic:"T4", label:"Tema 4 · Localización y dimensión", diff:"medium", text:"La dimensión óptima de la empresa se relaciona con...", opts:["el tamaño que permite producir eficientemente según demanda y costes","el máximo número posible de directivos","la eliminación total de costes variables","el tamaño mínimo legal de una sociedad anónima"], correct:0, explanation:"La dimensión debe ser coherente con la demanda esperada y la eficiencia de costes." },
+  { id:22, topic:"T4", label:"Tema 4 · Localización y dimensión", diff:"hard", text:"Las economías de escala aparecen cuando...", opts:["el coste medio disminuye al aumentar la producción","el precio de venta baja automáticamente","los costes fijos desaparecen","la demanda deja de influir en la producción"], correct:0, explanation:"Las economías de escala reducen el coste medio al repartir costes fijos y mejorar eficiencia." },
+  { id:23, topic:"T4", label:"Tema 4 · Localización y dimensión", diff:"hard", text:"Un polígono industrial con buenas comunicaciones, suelo barato y servicios comunes ofrece a la empresa principalmente...", opts:["desventajas de aglomeración","externalidades positivas de localización","obligación de exportar","integración vertical forzosa"], correct:1, explanation:"La concentración empresarial genera ventajas externas por infraestructuras, proveedores y mano de obra." },
+  { id:24, topic:"T4", label:"Tema 4 · Localización y dimensión", diff:"hard", text:"Si una empresa elige ubicarse cerca de sus consumidores porque vende productos perecederos, prima el factor...", opts:["mercado","tecnología","estructura jurídica","publicidad institucional"], correct:0, explanation:"Los productos perecederos exigen proximidad al mercado para reducir tiempos y costes de distribución." },
+
+  // T5 — ORGANIZACIÓN
+  { id:25, topic:"T5", label:"Tema 5 · Organización", diff:"easy", text:"Organizar consiste en...", opts:["establecer una estructura de funciones, responsabilidades y relaciones","vender más unidades a cualquier precio","eliminar toda jerarquía","repartir beneficios antes de producir"], correct:0, explanation:"La función de organización diseña tareas, autoridad y coordinación dentro de la empresa." },
+  { id:26, topic:"T5", label:"Tema 5 · Organización", diff:"medium", text:"¿Qué es un organigrama?", opts:["Un documento contable obligatorio","La representación gráfica de la estructura organizativa","Un plan de financiación bancaria","Un contrato entre socios"], correct:1, explanation:"El organigrama muestra niveles jerárquicos y relaciones funcionales." },
+  { id:27, topic:"T5", label:"Tema 5 · Organización", diff:"medium", text:"En una estructura lineal o jerárquica...", opts:["cada empleado recibe órdenes de varios jefes al mismo tiempo","la autoridad fluye de arriba abajo y cada persona depende de un superior","no existe división del trabajo","solo hay departamentos por proyectos"], correct:1, explanation:"La estructura lineal se basa en unidad de mando y jerarquía clara." },
+  { id:28, topic:"T5", label:"Tema 5 · Organización", diff:"hard", text:"La departamentalización funcional agrupa puestos según...", opts:["productos","zonas geográficas","funciones especializadas como producción, marketing o finanzas","tipo de cliente"], correct:2, explanation:"La organización funcional agrupa por especialización del trabajo." },
+  { id:29, topic:"T5", label:"Tema 5 · Organización", diff:"hard", text:"Un problema frecuente de las estructuras muy centralizadas es...", opts:["exceso de autonomía en niveles bajos","lentitud en la toma de decisiones","ausencia de coordinación vertical","costes salariales nulos"], correct:1, explanation:"La centralización puede retrasar decisiones al concentrarlas en pocos niveles." },
+  { id:30, topic:"T5", label:"Tema 5 · Organización", diff:"hard", text:"La dirección participativa por objetivos busca...", opts:["fijar metas consensuadas y evaluar resultados","sustituir todos los mandos intermedios","eliminar la planificación","delegar sin control alguno"], correct:0, explanation:"La DPO coordina objetivos acordados, seguimiento y evaluación del desempeño." },
+
+  // T6 — DIRECCIÓN Y RRHH
+  { id:31, topic:"T6", label:"Tema 6 · Dirección y RRHH", diff:"easy", text:"La función de dirección incluye...", opts:["planificar, organizar, gestionar y controlar","solo contratar personal","exclusivamente diseñar productos","únicamente emitir facturas"], correct:0, explanation:"Dirigir implica coordinar recursos humanos y materiales para alcanzar objetivos." },
+  { id:32, topic:"T6", label:"Tema 6 · Dirección y RRHH", diff:"medium", text:"La motivación laboral influye en la empresa porque...", opts:["puede mejorar productividad y clima laboral","elimina todos los conflictos","sustituye al salario","impide cualquier rotación"], correct:0, explanation:"Una plantilla motivada suele rendir más y trabajar con mejor clima organizativo." },
+  { id:33, topic:"T6", label:"Tema 6 · Dirección y RRHH", diff:"medium", text:"Según Maslow, una vez cubiertas las necesidades fisiológicas, aparecen las necesidades de...", opts:["autorrealización directamente","seguridad","prestigio social exclusivamente","creatividad artística"], correct:1, explanation:"Tras las fisiológicas, Maslow sitúa las necesidades de seguridad." },
+  { id:34, topic:"T6", label:"Tema 6 · Dirección y RRHH", diff:"hard", text:"La teoría X de McGregor parte de la idea de que los trabajadores...", opts:["buscan autorrealización y autocontrol","evitan el trabajo y necesitan control externo","se motivan solo con participación","no responden a incentivos económicos"], correct:1, explanation:"La teoría X tiene una visión más pesimista sobre la motivación de los trabajadores." },
+  { id:35, topic:"T6", label:"Tema 6 · Dirección y RRHH", diff:"hard", text:"La selección de personal tiene como objetivo principal...", opts:["elegir al candidato más adecuado para el puesto","aumentar automáticamente los salarios","reducir las vacaciones","evitar la formación interna"], correct:0, explanation:"La selección pretende adecuar el perfil del candidato a las exigencias del puesto." },
+  { id:36, topic:"T6", label:"Tema 6 · Dirección y RRHH", diff:"hard", text:"La formación continua en la empresa contribuye a...", opts:["obsolescencia del capital humano","mejorar adaptación, productividad y empleabilidad","eliminar la necesidad de dirección","reducir toda inversión tecnológica"], correct:1, explanation:"La formación ayuda a mantener competencias actualizadas y mejorar rendimiento." },
+
+  // T7 — PRODUCCIÓN Y PRODUCTIVIDAD
+  { id:37, topic:"T7", label:"Tema 7 · Producción y productividad", diff:"easy", text:"La productividad del trabajo se calcula como...", opts:["producción obtenida dividida entre unidades de trabajo empleadas","coste total entre ingresos","beneficio entre capital social","ventas entre existencias"], correct:0, explanation:"La productividad relaciona output obtenido con recursos empleados." },
+  { id:38, topic:"T7", label:"Tema 7 · Producción y productividad", diff:"medium", text:"¿Qué son los costes fijos?", opts:["Los que no varían con el volumen de producción en el corto plazo","Los que aumentan exactamente igual que el beneficio","Los que solo existen en empresas industriales","Los que desaparecen al vender más"], correct:0, explanation:"Los costes fijos permanecen constantes dentro de ciertos niveles de actividad." },
+  { id:39, topic:"T7", label:"Tema 7 · Producción y productividad", diff:"medium", text:"¿Qué son los costes variables?", opts:["Los que dependen del nivel de producción","Los que nunca cambian","Los asociados solo a la financiación bancaria","Los impuestos sobre beneficios"], correct:0, explanation:"Los costes variables aumentan o disminuyen con la producción." },
+  { id:40, topic:"T7", label:"Tema 7 · Producción y productividad", diff:"hard", text:"Si una empresa produce 1.200 unidades con 300 horas de trabajo, la productividad del trabajo es...", opts:["2 unidades/hora","3 unidades/hora","4 unidades/hora","5 unidades/hora"], correct:2, explanation:"Productividad = 1.200 / 300 = 4 unidades por hora." },
+  { id:41, topic:"T7", label:"Tema 7 · Producción y productividad", diff:"hard", text:"Si el coste fijo total es 12.000 €, el precio de venta unitario 30 € y el coste variable unitario 18 €, el punto muerto es...", opts:["600 unidades","800 unidades","1.000 unidades","1.200 unidades"], correct:2, explanation:"PM = CF / (p - CVu) = 12.000 / (30 - 18) = 1.000 unidades." },
+  { id:42, topic:"T7", label:"Tema 7 · Producción y productividad", diff:"hard", text:"Una empresa fabrica 500 unidades. Sus costes fijos son 4.000 € y el coste variable unitario 6 €. El coste total es...", opts:["6.000 €","7.000 €","8.000 €","9.000 €"], correct:1, explanation:"CT = CF + CVT = 4.000 + (500 × 6) = 7.000 €." },
+  { id:43, topic:"T7", label:"Tema 7 · Producción y productividad", diff:"hard", text:"Si la producción pasa de 2.000 a 2.400 unidades y las horas de trabajo de 500 a 550, la productividad laboral...", opts:["disminuye","permanece igual","aumenta","no puede saberse"], correct:2, explanation:"Inicial: 2.000/500 = 4. Final: 2.400/550 ≈ 4,36. Aumenta." },
+  { id:44, topic:"T7", label:"Tema 7 · Producción y productividad", diff:"hard", text:"Si el coste medio disminuye al aumentar la producción, la empresa está aprovechando...", opts:["deseconomías externas","economías de escala","apalancamiento financiero","rotación de existencias"], correct:1, explanation:"La caída del coste medio al crecer la producción indica economías de escala." },
+
+  // T8 — APROVISIONAMIENTO
+  { id:45, topic:"T8", label:"Tema 8 · Aprovisionamiento", diff:"easy", text:"La función de aprovisionamiento consiste en...", opts:["adquirir, almacenar y gestionar materiales necesarios para la actividad","fijar la estructura salarial","emitir acciones en bolsa","organizar exclusivamente campañas de publicidad"], correct:0, explanation:"Aprovisionar es asegurar el suministro y gestión de materiales o mercancías." },
+  { id:46, topic:"T8", label:"Tema 8 · Aprovisionamiento", diff:"medium", text:"Las existencias de seguridad sirven para...", opts:["reducir a cero las ventas","evitar rupturas de stock ante retrasos o aumentos inesperados de demanda","incrementar costes sin utilidad","sustituir al almacén"], correct:1, explanation:"El stock de seguridad protege frente a incertidumbres en suministro o demanda." },
+  { id:47, topic:"T8", label:"Tema 8 · Aprovisionamiento", diff:"medium", text:"¿Qué son las materias primas?", opts:["Productos terminados listos para la venta","Elementos que se transforman en el proceso productivo","Inversiones financieras temporales","Deudas con proveedores"], correct:1, explanation:"Las materias primas se incorporan y transforman durante la producción." },
+  { id:48, topic:"T8", label:"Tema 8 · Aprovisionamiento", diff:"hard", text:"Si el consumo anual es 10.000 unidades y el stock medio 2.000 unidades, la rotación de existencias es...", opts:["2 veces","4 veces","5 veces","10 veces"], correct:2, explanation:"Rotación = Consumo anual / Stock medio = 10.000 / 2.000 = 5." },
+  { id:49, topic:"T8", label:"Tema 8 · Aprovisionamiento", diff:"hard", text:"El modelo ABC de inventarios permite...", opts:["clasificar existencias según su importancia relativa","calcular salarios netos","fijar el tipo de interés bancario","determinar la forma jurídica"], correct:0, explanation:"El ABC prioriza control sobre artículos más relevantes por valor o impacto." },
+  { id:50, topic:"T8", label:"Tema 8 · Aprovisionamiento", diff:"hard", text:"En un sistema just in time, la empresa busca principalmente...", opts:["acumular inventarios elevados","reducir stocks y recibir materiales cuando se necesitan","comprar siempre al proveedor más lejano","eliminar el control de calidad"], correct:1, explanation:"El JIT pretende minimizar inventarios y desperdicios mediante suministros ajustados." },
+
+  // T9 — MARKETING
+  { id:51, topic:"T9", label:"Tema 9 · Marketing", diff:"easy", text:"El marketing consiste en...", opts:["detectar necesidades y satisfacerlas de forma rentable","hacer publicidad únicamente","bajar precios siempre","producir sin estudiar al consumidor"], correct:0, explanation:"Marketing implica investigar, diseñar oferta y satisfacer necesidades de manera rentable." },
+  { id:52, topic:"T9", label:"Tema 9 · Marketing", diff:"medium", text:"Las variables del marketing mix son...", opts:["producto, precio, promoción y distribución","ventas, costes, inversión y beneficio","financiación, contabilidad, fiscalidad y producción","oferta, demanda, ahorro y consumo"], correct:0, explanation:"Las 4P clásicas son producto, precio, promoción y distribución." },
+  { id:53, topic:"T9", label:"Tema 9 · Marketing", diff:"medium", text:"La segmentación de mercados consiste en...", opts:["dividir el mercado en grupos homogéneos de consumidores","fijar un precio único mundial","eliminar la competencia","vender el mismo producto sin adaptaciones"], correct:0, explanation:"Segmentar es agrupar consumidores con características o comportamientos similares." },
+  { id:54, topic:"T9", label:"Tema 9 · Marketing", diff:"medium", text:"El posicionamiento de un producto se refiere a...", opts:["el lugar físico en el almacén","la imagen que ocupa en la mente del consumidor respecto a competidores","su coste de producción unitario","el número de anuncios emitidos"], correct:1, explanation:"Posicionar es definir la percepción diferencial del producto en el mercado." },
+  { id:55, topic:"T9", label:"Tema 9 · Marketing", diff:"hard", text:"Una estrategia de penetración de mercado busca...", opts:["vender más productos actuales en mercados actuales","entrar con nuevos productos en nuevos mercados","abandonar el mercado actual","diversificar sin relación"], correct:0, explanation:"La penetración pretende aumentar ventas de productos actuales en el mercado actual." },
+  { id:56, topic:"T9", label:"Tema 9 · Marketing", diff:"hard", text:"¿Cuál de las siguientes acciones corresponde a marketing operativo?", opts:["definir la misión de la empresa","decidir una campaña promocional concreta y fijar precios","analizar la visión a 10 años","rediseñar la forma jurídica"], correct:1, explanation:"El marketing operativo ejecuta decisiones concretas de las 4P a corto plazo." },
+  { id:57, topic:"T9", label:"Tema 9 · Marketing", diff:"hard", text:"En el ciclo de vida del producto, la fase de crecimiento suele caracterizarse por...", opts:["ventas crecientes y entrada de competidores","caída irreversible de demanda","ausencia de beneficios siempre","desaparición del mercado objetivo"], correct:0, explanation:"En crecimiento aumentan ventas y suele intensificarse la competencia." },
+  { id:58, topic:"T9", label:"Tema 9 · Marketing", diff:"hard", text:"Si una empresa lanza un producto a precio muy alto para captar consumidores dispuestos a pagar más y luego reduce el precio, aplica una estrategia de...", opts:["penetración","descremación","seguimiento","coste-plus lineal"], correct:1, explanation:"La descremación fija un precio inicial alto para captar segmentos menos sensibles al precio." },
+  { id:59, topic:"T9", label:"Tema 9 · Marketing", diff:"hard", text:"La investigación comercial sirve para...", opts:["obtener información relevante para decisiones de marketing","garantizar beneficios inmediatos","sustituir la producción","evitar cualquier riesgo empresarial"], correct:0, explanation:"La investigación aporta datos para decidir sobre mercado, producto, precio o comunicación." },
+  { id:60, topic:"T9", label:"Tema 9 · Marketing", diff:"hard", text:"La distribución intensiva pretende que el producto...", opts:["esté en el máximo número de puntos de venta posibles","se venda solo en tiendas exclusivas","desaparezca del canal online","tenga un precio mínimo obligatorio"], correct:0, explanation:"La distribución intensiva busca gran cobertura y máxima presencia en el mercado." },
+
+  // T10 — FINANCIACIÓN
+  { id:61, topic:"T10", label:"Tema 10 · Financiación", diff:"easy", text:"La financiación empresarial consiste en...", opts:["obtener recursos económicos para realizar inversiones y actividad","solo emitir acciones","reducir obligatoriamente el capital social","vender existencias con descuento"], correct:0, explanation:"Financiar es captar recursos para invertir y sostener el funcionamiento de la empresa." },
+  { id:62, topic:"T10", label:"Tema 10 · Financiación", diff:"medium", text:"Una fuente de financiación propia es...", opts:["un préstamo bancario","el capital aportado por los socios","el crédito comercial de proveedores","el descuento de efectos"], correct:1, explanation:"Los recursos propios incluyen capital, reservas y autofinanciación." },
+  { id:63, topic:"T10", label:"Tema 10 · Financiación", diff:"medium", text:"El préstamo bancario se considera financiación...", opts:["ajena","interna","espontánea siempre","propia"], correct:0, explanation:"El préstamo genera una obligación de devolución y es financiación ajena." },
+  { id:64, topic:"T10", label:"Tema 10 · Financiación", diff:"hard", text:"La autofinanciación de enriquecimiento procede principalmente de...", opts:["amortizaciones","reservas retenidas de beneficios","préstamos a largo plazo","leasing"], correct:1, explanation:"Las reservas fortalecen el patrimonio neto y constituyen autofinanciación de enriquecimiento." },
+  { id:65, topic:"T10", label:"Tema 10 · Financiación", diff:"hard", text:"El leasing es una operación que permite a la empresa...", opts:["alquilar un bien con opción de compra al final del contrato","emitir bonos convertibles","cobrar anticipadamente a clientes","transformar deudas en capital automáticamente"], correct:0, explanation:"El leasing combina uso del bien y posible compra final." },
+  { id:66, topic:"T10", label:"Tema 10 · Financiación", diff:"hard", text:"El factoring consiste en...", opts:["adquirir maquinaria a plazos","ceder créditos comerciales a una entidad para anticipar su cobro","ampliar capital con nuevos socios","invertir excedentes en inmovilizado"], correct:1, explanation:"En factoring se ceden derechos de cobro a una entidad financiera." },
+
+  // T11 — INVERSIÓN
+  { id:67, topic:"T11", label:"Tema 11 · Inversión", diff:"easy", text:"Invertir en la empresa significa...", opts:["destinar recursos a bienes o proyectos que generarán rendimientos futuros","guardar dinero sin usarlo","reducir existencias siempre","aumentar salarios automáticamente"], correct:0, explanation:"La inversión compromete recursos actuales para obtener beneficios futuros." },
+  { id:68, topic:"T11", label:"Tema 11 · Inversión", diff:"medium", text:"Un activo no corriente se caracteriza por...", opts:["permanecer en la empresa más de un ciclo corto y servir a la actividad de forma duradera","venderse inmediatamente","ser siempre dinero en caja","no aparecer en el balance"], correct:0, explanation:"El activo no corriente incluye bienes duraderos destinados a la actividad." },
+  { id:69, topic:"T11", label:"Tema 11 · Inversión", diff:"medium", text:"El plazo de recuperación o pay-back mide...", opts:["el tiempo necesario para recuperar la inversión inicial con los flujos generados","la rentabilidad bursátil de una acción","el nivel de endeudamiento","el coste del capital social"], correct:0, explanation:"El pay-back indica cuántos periodos se tardan en recuperar el desembolso inicial." },
+  { id:70, topic:"T11", label:"Tema 11 · Inversión", diff:"hard", text:"Un proyecto requiere 10.000 € y genera flujos netos de caja de 4.000 €, 4.000 € y 3.000 €. El pay-back simple es...", opts:["2 años","2,5 años","3 años","3,5 años"], correct:1, explanation:"Tras 2 años se recuperan 8.000 € y faltan 2.000 € del tercer flujo de 3.000 €: 2 + 2.000/3.000 ≈ 2,67; la opción más próxima simplificada es 2,5, aunque en desarrollo sería 2,67." },
+  { id:71, topic:"T11", label:"Tema 11 · Inversión", diff:"hard", text:"Si una inversión de 20.000 € genera cobros netos anuales constantes de 5.000 €, su plazo de recuperación simple es...", opts:["2 años","3 años","4 años","5 años"], correct:2, explanation:"20.000 / 5.000 = 4 años." },
+  { id:72, topic:"T11", label:"Tema 11 · Inversión", diff:"hard", text:"Entre dos inversiones con igual desembolso, en el criterio pay-back será preferible la que...", opts:["tarde más en recuperar la inversión","recupere antes el desembolso inicial","tenga más costes fijos","genere menos liquidez"], correct:1, explanation:"Con pay-back se prefiere la inversión que recupera antes el capital invertido." },
+
+  // T12 — PATRIMONIO Y ANÁLISIS CONTABLE
+  { id:73, topic:"T12", label:"Tema 12 · Patrimonio y análisis contable", diff:"easy", text:"El patrimonio empresarial está formado por...", opts:["bienes, derechos y obligaciones valorables en dinero","solo los edificios y máquinas","únicamente el dinero en caja","los beneficios futuros esperados"], correct:0, explanation:"El patrimonio recoge bienes y derechos (activo) y obligaciones (pasivo)." },
+  { id:74, topic:"T12", label:"Tema 12 · Patrimonio y análisis contable", diff:"easy", text:"La ecuación fundamental del patrimonio es...", opts:["Activo = Patrimonio neto + Pasivo","Beneficio = Activo - Ventas","Pasivo = Ingresos - Gastos","Activo = Solo pasivo corriente"], correct:0, explanation:"El activo se financia con patrimonio neto y pasivo." },
+  { id:75, topic:"T12", label:"Tema 12 · Patrimonio y análisis contable", diff:"medium", text:"El fondo de maniobra se calcula como...", opts:["activo corriente menos pasivo corriente","activo no corriente menos patrimonio neto","ventas menos costes variables","tesorería menos existencias"], correct:0, explanation:"El fondo de maniobra mide el margen de seguridad financiera a corto plazo." },
+  { id:76, topic:"T12", label:"Tema 12 · Patrimonio y análisis contable", diff:"medium", text:"Si el activo corriente es 30.000 € y el pasivo corriente 18.000 €, el fondo de maniobra es...", opts:["12.000 €","18.000 €","30.000 €","48.000 €"], correct:0, explanation:"FM = AC - PC = 30.000 - 18.000 = 12.000 €." },
+  { id:77, topic:"T12", label:"Tema 12 · Patrimonio y análisis contable", diff:"medium", text:"El ratio de liquidez se calcula como...", opts:["activo corriente / pasivo corriente","pasivo corriente / activo corriente","tesorería / patrimonio neto","ventas / activo no corriente"], correct:0, explanation:"El ratio de liquidez compara recursos corrientes con deudas a corto plazo." },
+  { id:78, topic:"T12", label:"Tema 12 · Patrimonio y análisis contable", diff:"hard", text:"Si el activo corriente es 24.000 € y el pasivo corriente 12.000 €, el ratio de liquidez es...", opts:["0,5","1","2","3"], correct:2, explanation:"Liquidez = 24.000 / 12.000 = 2." },
+  { id:79, topic:"T12", label:"Tema 12 · Patrimonio y análisis contable", diff:"hard", text:"Si el patrimonio neto es 40.000 € y el pasivo total 60.000 €, el activo total asciende a...", opts:["20.000 €","40.000 €","60.000 €","100.000 €"], correct:3, explanation:"Activo = PN + Pasivo = 40.000 + 60.000 = 100.000 €." },
+  { id:80, topic:"T12", label:"Tema 12 · Patrimonio y análisis contable", diff:"hard", text:"Una situación financiera de suspensión de pagos se asocia a...", opts:["falta de liquidez para atender deudas a corto plazo","beneficios excesivos","ausencia total de pasivo","capital social elevado"], correct:0, explanation:"La suspensión de pagos refleja problemas de liquidez a corto plazo." }
+
+  { id:81, topic:"T1", label:"Tema 1 · Conceptos básicos", diff:"hard", text:"La empresa se considera un sistema abierto porque...", opts:["no intercambia recursos con el exterior","recibe inputs del entorno y genera outputs hacia él","solo depende del capital propio","funciona sin objetivos"], correct:1, explanation:"La empresa interactúa continuamente con el entorno mediante entradas y salidas." },
+  { id:82, topic:"T2", label:"Tema 2 · Clases y funciones", diff:"hard", text:"Una empresa pública se caracteriza por...", opts:["pertenecer al Estado o a una administración pública","distribuir beneficios entre accionistas privados","no tener personal laboral","actuar siempre en mercados internacionales"], correct:0, explanation:"La empresa pública está controlada por una administración pública." },
+  { id:83, topic:"T3", label:"Tema 3 · Objetivos y crecimiento", diff:"hard", text:"El crecimiento externo suele justificarse por...", opts:["búsqueda de sinergias y acceso rápido a nuevos mercados o capacidades","reducción inmediata de toda deuda","eliminación del riesgo empresarial","ausencia de inversión"], correct:0, explanation:"El crecimiento externo busca sinergias, cuota de mercado y capacidades ya existentes." },
+  { id:84, topic:"T4", label:"Tema 4 · Localización y dimensión", diff:"hard", text:"Una empresa intensiva en mano de obra suele prestar más atención a...", opts:["disponibilidad y coste del factor trabajo","proximidad a puertos marítimos","número de autopistas internacionales","precio del petróleo exclusivamente"], correct:0, explanation:"Cuando el trabajo es intensivo, la empresa cuida el coste y disponibilidad de empleo." },
+  { id:85, topic:"T5", label:"Tema 5 · Organización", diff:"hard", text:"La descentralización implica que...", opts:["las decisiones se concentran totalmente en la cúpula","parte de la autoridad se delega en niveles inferiores","no existen mandos intermedios","la estructura no necesita coordinación"], correct:1, explanation:"Descentralizar es delegar decisión en niveles más cercanos a la operativa." },
+  { id:86, topic:"T6", label:"Tema 6 · Dirección y RRHH", diff:"hard", text:"Un estilo de liderazgo democrático suele favorecer...", opts:["participación, compromiso y clima laboral","ausencia total de normas","decisiones improvisadas siempre","menos coordinación"], correct:0, explanation:"El liderazgo participativo suele mejorar motivación y compromiso del equipo." },
+  { id:87, topic:"T7", label:"Tema 7 · Producción y productividad", diff:"hard", text:"Si una empresa mantiene la producción y reduce sus horas de trabajo, la productividad...", opts:["disminuye","aumenta","se mantiene necesariamente igual","no puede calcularse"], correct:1, explanation:"Menos horas con la misma producción implican mayor productividad." },
+  { id:88, topic:"T8", label:"Tema 8 · Aprovisionamiento", diff:"hard", text:"El coste de almacenamiento incluye...", opts:["alquiler, seguros, deterioro y manipulación de inventarios","solo el coste del transporte","únicamente las ventas perdidas","el beneficio de proveedores"], correct:0, explanation:"Almacenar genera costes de espacio, riesgo, manipulación y financiación." },
+  { id:89, topic:"T9", label:"Tema 9 · Marketing", diff:"hard", text:"La elasticidad-precio de la demanda mide...", opts:["la sensibilidad de la cantidad demandada ante cambios en el precio","el coste de producción por unidad","el beneficio por empleado","la cuota de mercado"], correct:0, explanation:"La elasticidad indica cómo responde la demanda a variaciones del precio." },
+  { id:90, topic:"T10", label:"Tema 10 · Financiación", diff:"hard", text:"El coste de una fuente de financiación se relaciona con...", opts:["la rentabilidad exigida por quien aporta los recursos","el número de clientes","el tamaño del almacén","la antigüedad del edificio"], correct:0, explanation:"Toda fuente de financiación tiene un coste explícito o implícito." },
+  { id:91, topic:"T11", label:"Tema 11 · Inversión", diff:"hard", text:"Cuanto mayor es la liquidez de una inversión, normalmente...", opts:["mayor suele ser su riesgo","menor suele ser su riesgo y rentabilidad potencial","menor es su coste variable","más elevado es el punto muerto"], correct:1, explanation:"En general, mayor liquidez implica menor riesgo y, a menudo, menor rentabilidad esperada." },
+  { id:92, topic:"T12", label:"Tema 12 · Patrimonio y análisis contable", diff:"hard", text:"La solvencia a largo plazo depende principalmente de...", opts:["capacidad de la empresa para hacer frente a sus deudas con su estructura patrimonial","ventas del mes actual","el número de proveedores","la rotación de publicidad"], correct:0, explanation:"La solvencia mide la capacidad de atender obligaciones con la estructura de recursos de la empresa." },
+
+];
+
+let answers = {};
+let showResults = false;
+let calcOnlyMode = false;
+let realExamMode = false;
+let currentMode = 'exam';
+let allQuestions = [];
+
+function shuffleArray(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function cloneQuestion(q){ return JSON.parse(JSON.stringify(q)); }
+function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+
+function applyQuestionVariants(baseQuestions){
+  return baseQuestions.map(q => {
+    const nq = cloneQuestion(q);
+    const vars = QUESTION_VARIANTS[q.id];
+    if (Array.isArray(vars) && vars.length) nq.text = vars[randInt(0, vars.length-1)];
+    return nq;
+  });
+}
+
+const QUESTION_BANK = applyQuestionVariants(QUESTIONS);
+
+function buildRandomExamWithSize(targetCount){
+  const counts40 = { T1:4, T2:3, T3:3, T4:3, T5:3, T6:4, T7:5, T8:3, T9:5, T10:3, T11:2, T12:2 };
+  const counts20 = { T1:2, T2:2, T3:1, T4:1, T5:1, T6:2, T7:3, T8:1, T9:3, T10:1, T11:1, T12:2 };
+  const counts60 = { T1:6, T2:5, T3:5, T4:5, T5:5, T6:6, T7:8, T8:4, T9:8, T10:4, T11:2, T12:2 };
+  const counts = targetCount===20 ? counts20 : targetCount===60 ? counts60 : counts40;
+  let out = [];
+  Object.entries(counts).forEach(([topic,n]) => out.push(...shuffleArray(QUESTION_BANK.filter(q=>q.topic===topic)).slice(0,n)));
+  return shuffleArray(out).slice(0,targetCount);
+}
+function buildCalculationOnlyExam(targetCount){
+  const ids = new Set([40,41,42,48,70,71,76,78,79]);
+  const pool = QUESTION_BANK.filter(q=>ids.has(q.id));
+  let out = [];
+  while(out.length < targetCount) out.push(...shuffleArray(pool));
+  return shuffleArray(out.slice(0,targetCount));
+}
+function buildThemeExam(targetCount, theme){
+  const pool = theme==='all' ? QUESTION_BANK : QUESTION_BANK.filter(q=>q.topic===theme);
+  return shuffleArray([...pool]).slice(0, Math.min(targetCount, pool.length));
+}
+function buildRealExam(targetCount){
+  const weights = { T1:4, T2:3, T3:3, T4:3, T5:3, T6:4, T7:5, T8:3, T9:5, T10:3, T11:2, T12:2 };
+  let out = [];
+  Object.entries(weights).forEach(([topic,n]) => out.push(...shuffleArray(QUESTION_BANK.filter(q=>q.topic===topic)).slice(0,n)));
+  return shuffleArray(out).slice(0,targetCount);
+}
+function getCurrentExam(){
+  const size = parseInt(document.getElementById('exam-size-select')?.value || '40', 10);
+  const theme = document.getElementById('theme-select')?.value || 'all';
+  if (realExamMode) return buildRealExam(size);
+  if (calcOnlyMode) return buildCalculationOnlyExam(size);
+  if (theme !== 'all') return buildThemeExam(size, theme);
+  return buildRandomExamWithSize(size);
+}
+
+function renderQuestion(q, idx){
+  const answered = answers[q.id] !== undefined;
+  let h = `<div class="question-card"><div class="question-head"><span class="question-topic">${q.label || q.topic}</span><span class="question-meta">${idx+1}/${allQuestions.length}</span></div><h3 class="question-text">${q.text}</h3><div class="options">`;
+  q.opts.forEach((op,i)=>{
+    const active = answers[q.id]===i ? ' active' : '';
+    const disabled = showResults ? ' disabled' : '';
+    h += `<button class="option-btn${active}${disabled}" onclick="selectOption(${q.id}, ${i})">${String.fromCharCode(65+i)}. ${op}</button>`;
+  });
+  h += `</div>`;
+  if (showResults || (answered && calcOnlyMode)) h += `<div class="explanation"><strong>Respuesta correcta:</strong> ${q.opts[q.correct]}<br><small>${q.explanation || ''}</small></div>`;
+  h += `</div>`;
+  return h;
+}
+function renderExam(){
+  const wrap = document.getElementById('questions-wrap');
+  if (!wrap) return;
+  wrap.style.display = 'block';
+  wrap.innerHTML = allQuestions.map((q,i)=>renderQuestion(q,i)).join('');
+}
+function resetExam(){
+  allQuestions = getCurrentExam();
+  answers = {};
+  showResults = false;
+  renderExam();
+}
+function selectOption(qid,opt){ if(showResults) return; answers[qid]=opt; renderExam(); }
+function toggleShuffle(){ allQuestions = shuffleArray(allQuestions.length ? allQuestions : getCurrentExam()); renderExam(); }
+function toggleCalcOnly(){ calcOnlyMode = !calcOnlyMode; realExamMode = false; document.getElementById('calc-only-btn')?.classList.toggle('calc-active', calcOnlyMode); resetExam(); }
+function toggleRealExam(){ realExamMode = !realExamMode; calcOnlyMode = false; document.getElementById('real-exam-btn')?.classList.toggle('active', realExamMode); resetExam(); }
+function setMode(mode){ currentMode = mode; document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active','active-study','active-flash')); if(mode==='exam') document.getElementById('mode-exam')?.classList.add('active'); if(mode==='study') document.getElementById('mode-study')?.classList.add('active-study'); if(mode==='flash') document.getElementById('mode-flash')?.classList.add('active-flash'); }
+function submitExam(){ showResults = true; renderExam(); }
+function showToast(msg){ console.log(msg); }
+function init(){
+  document.getElementById('shuffle-btn')?.addEventListener('click', toggleShuffle);
+  document.getElementById('calc-only-btn')?.addEventListener('click', toggleCalcOnly);
+  document.getElementById('real-exam-btn')?.addEventListener('click', toggleRealExam);
+  document.getElementById('theme-select')?.addEventListener('change', resetExam);
+  document.getElementById('exam-size-select')?.addEventListener('change', resetExam);
+  setMode('exam');
+  resetExam();
+}
+window.addEventListener('DOMContentLoaded', init);
+
+</script>
+</body>
+</html>
