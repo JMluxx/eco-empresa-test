@@ -1,0 +1,12 @@
+{
+  "name": "eco-empresa-test",
+  "version": "1.0.0",
+  "description": "Examen tipo test de Economía de la Empresa",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
